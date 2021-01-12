@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<style>
+			body{
+				margin: 50px;
+				width: 300px;
+			}
+		</style>
+		
+		<!-- 引入外部js文件 jquery，这样才能使用jQuery语法 -->
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<div class="msg">登录成功</div>
+			
+			<h1>登录</h1>
+			<div class="form-group">
+				<label>用户名：</label>
+				<input type="text" class="form-control"
+				 name="username" id="username"
+				 autocomplete="off"
+				 autofocus="autofocus"
+				 placeholder="请输入用户名..."
+				 />
+			</div>
+			<div class="form-group">
+				<label>密码：</label>
+				<input type="password" class="form-control"
+				 placeholder="请输入密码..."
+				 name="password" id="password"/>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary"
+					onclick="doSubmit()">提交</button>
+				<button class="btn btn-danger">取消</button>
+			</div>
+		</div>
+	</body>
+	
+	<script>
+		function doSubmit(){
+			//var username = document.getElementById("username");
+			//通过jQuery选择器#username，找到页面input，val()获取到这个框中的值
+			console.log( $("#username").val() );
+			
+			// var msg = document.getElementsByClassName("msg")[0];
+			// console.log(msg.innerText);
+			console.log( $(".msg").text() );	//获取div文字
+			
+			//msg.innerHTML = "<font color='red'>登录成功，欢迎：" + username.value+"</font>";
+			$(".msg").text("登录成功，欢迎："+ $("#username").val());	//设置新的文字
+			$(".msg").css("color","red");  //.css代表动态设置它的样式，k,v结构
+		}
+	</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>数据：变量、数组、对象、数组对象</h1>
+			<p>变量：{{name}}、{{age}}、{{sex}}</p>
+			<hr>
+			<p>数组：{{hobby}}</p>
+			<p>数组第一个元素：{{hobby[0]}}</p>
+			<p>数组最后一个元素：{{hobby[hobby.length-1]}}</p>
+			<p>
+				遍历数组的每个元素：(每次从集合中拿出一个元素，当前行代表o)<br>
+				<div v-for="o in hobby">{{o}}</div>
+				<div v-for="(o,i) in hobby">{{i}}-{{o}}</div>
+			</p>
+			
+			<hr>
+			<p>对象：{{girlFriend}}</p>
+			<p>对象属性：{{girlFriend.name}}、{{girlFriend.age}}</p>
+			
+			<hr>
+			<p>数组对象：{{cars}}</p>
+			<p>数组对象第一条记录：{{cars[0]}}</p>
+			<p>数组对象第一条记录：{{cars[0].name}}，{{cars[0].color}}</p>
+			<p>数组对象遍历：<br>
+				<div v-for="(o,i) in cars">{{o.name}}-{{o.color}}</div>
+			</p>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				name: "王强",
+				age: 18,
+				sex: true,
+				hobby: ["乒乓球","爬山","音乐","书法"],
+				girlFriend: {
+					name: "王银",
+					age: 15
+				},
+				cars: [
+					{name:"保时捷707", color:"red"},
+					{name:"劳斯莱斯", color:"white"},
+					{name:"jeep", color:"green"}
+				] 
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//var car = new Object();		//标准写法
+			var car = {};							//简写
+			
+			car.name = "保时捷 718 Cayman T";
+			car.color = "红色";
+			car.price = 641000;
+			
+			alert(car);
+			alert(car.name + car.color + car.price);
+			alert(car["name"] + car["color"]+car["price"]);
+			
+			console.log(car);
+			console.log(car.price);
+		</script>
+	</body>
+</html>

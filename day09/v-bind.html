@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<a href="http://www.pinduoduo.com">拼多多</a>
+			
+			<a href="{{url}}">{{urlname}}1</a>
+			<a v-bind:href="url">{{urlname}}2</a>
+			<a :href="url">{{urlname}}3</a>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			data:{
+				url: "http://www.jd.com",
+				urlname: "京东"
+			}
+		})
+	</script>
+</html>

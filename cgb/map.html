@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>旋转太极图</title>
+
+  <style>
+	body{
+		display: flex;				/* w3c新标准，弹性布局，内容居中 */
+		align-items: center;		/* 弹性布局，纵向居中 */
+		justify-content: center;	/* 弹性布局，横向居中 */
+		min-height: 100vh;			/* 高度自适应 */
+		margin: 0;
+	}
+	div{
+		width: 0;
+		height: 200px;	/*这个高就是黑色圆形和白色圆形的直径和*/
+		border-left: 100px solid black;	/*黑色太极部分的圈带动的黑色的阴影*/
+		border-right: 100px solid #fff;	/*白色太极部分的圈带动的白色的阴影*/
+
+		box-shadow: 0 0 15px rgba(0,0,0,.5);	/* box-shadow: h-shadow v-shadow spread color; */
+		border-radius: 100px;	/*旋转半径100*/
+		-webkit-animation:rotation 2.5s linear infinite;	/*旋转速度定义,越小越快*/
+	}
+
+	/*旋转角度函数定义*/
+	@-webkit-keyframes rotation {
+		0% {-webkit-transform:rotate(0deg);}
+		100% {-webkit-transform:rotate(-360deg);}
+	}
+
+	div:before{
+		content: "";
+		position: absolute;
+
+		height: 100px;
+		z-index: 1;
+		border-radius: 100px;
+
+		/*白色的小半圆*/
+		border-left: 50px solid #fff;
+		border-right: 50px solid #fff;
+		left: -50px;
+		/*黑色的小半圆，因为转动拖动黑色阴影*/
+		box-shadow: 0 100px 0 black;
+	}
+	div:after{
+		content: "";
+		position: absolute;
+		
+		height: 30px;	/*height是太极里面小圆圈的高30，要和border-radius30一致，才画出圆*/
+		z-index: 1;		/*这个是显示小圆圈的,0就是不显示*/
+		border-radius: 30px;
+
+		border-left: 15px solid;
+		border-right: 15px solid;
+		top: 40px;		/*top和left，决定小圆圈白色和黑色的位置*/
+		left: -15px;
+		
+		box-shadow: 0 100px 0 white;		/*黑色太极部分里面的小白色圆圈*/
+	}
+
+  </style>
+ </head>
+
+ <body>
+	<div></div>
+ </body>
+</html>

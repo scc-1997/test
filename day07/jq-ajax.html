@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body>
+		<h1>解析京东获取商品价格的json字符串</h1>
+		<div>
+			商品的编号：<span id="id"></span>
+		</div>
+		<div>
+			商品的价格：<span id="price"></span>
+		</div>
+	</body>
+	<script>
+		//发起ajax请求，{}参数集合，
+		$.ajax({
+			async: true,		//异步
+			type: "POST",	//请求类型POST
+			url: "https://p.3.cn/prices/mgets",	//请求地址
+			data: {				//请求参数
+				//skuIds=J_100009077449
+				"skuIds": "J_100009077449"		//参数格式k:v
+			},
+			contentType: "application/json;charset=utf-8;",	//请求类型
+			dataType: "jsonp",							//返回类型
+			success: function( data ){				//成功返回，数据封装到data js对象中
+				console.log(data)
+				
+				//解析返回值，把编号和价格在页面中展现
+				var price = data[0].p;
+				var id = data[0].id.substring(2);
+				
+				$("#id").text(id); $("#id").css("color","blue");
+				$("#price").text(price); $("#price").css("color", "red");
+			},
+			error: function( e ){						//错误返回，e代表错误状态好和异常信息
+				console.log(e.status);
+				console.log(e.responseText);
+			}
+		})
+	</script>
+</html>

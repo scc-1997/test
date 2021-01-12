@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>DOM树结构解析</title>
+	</head>
+	<body>
+		<h1 name="domname" id="domid" class="domclass">JavaScript 脚本语言之DOM树</h1>
+		
+		<a href="http://www.taobao.com" target="_blank" id="tb">淘宝</a>
+		<a href="http://www.jd.com" target="_blank" id="jd">京东</a>
+		<a href="http://www.pinduoduo.com" target="_blank" id="pd">拼多多</a>
+		
+		<br/><br/>
+		
+		<button onclick="alert(document.title)">网页标题</button>
+		<button onclick="alert(document.getElementsByTagName('h1')[0].innerText)">1-H1标签 tag</button>
+		<button onclick="alert(document.getElementsByName('domname')[0].innerText)">2-H1标签 name</button>
+		<button onclick="alert(document.getElementsByClassName('domclass')[0].innerText)">3-H1标签 class</button>
+		<button onclick="alert(document.getElementById('domid').innerText)">4-H1标签 id</button>
+
+		<br/><br/>
+		
+		<button onclick="alert(document.getElementsByTagName('a').length)">A标签数</button>
+		
+		<button onclick="alert(document.getElementById('tb').href)">A链接-淘宝</button>
+		<button onclick="alert(document.getElementById('tb').innerText)">A链接-淘宝</button>
+		
+		<button onclick="alert(document.getElementById('jd'))">A链接-京东</button>
+		<button onclick="alert(document.getElementById('jd').innerText)">A链接-京东</button>
+		
+		<button onclick="alert(document.getElementById('pd'))">A链接-拼多多</button>
+		<button onclick="alert(document.getElementById('pd').innerText)">A链接-拼多多</button>
+		
+	</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>ccs特效</title>
+
+  <style>
+	  .moveBox{
+		  margin: 10px;
+		  width: 100px;
+		  height: 100px;
+		  background: #1199ff;
+		  position: relative;
+		  animation: mymove 5s infinite;
+	  }
+	  
+	  @keyframes mymove{
+	  	from{ left: 0px;}
+	  	to{ left: 200px;}
+	  }
+	  
+	  .transitionBox{
+		  margin: 10px;
+		  width: 100px;
+		  height: 100px;
+		  background: #55aa00;
+		  transition: width 2s;
+	  }
+	  .transitionBox:hover{
+		  width: 300px;
+		  height: 100px;
+	  }
+	  
+	  ul{
+		  margin: 20px 0 0 10px;
+		  list-style: none;
+	  }
+	  li{
+		  float: left;
+		  width: 100px;
+		  text-align: center;
+		  height: 30px;
+		  line-height: 30px;
+		  margin-left: 8px;
+		  background: #ee1166;
+		  -webkit-transform: skewX(30deg);
+	  }
+	  a{
+		  text-decoration: none;
+		  -webkit-transform: shewX(-30deg);
+		  display: block;
+		  color: #FFFFFF;
+	  }
+	  li:hover{
+		  background: #008cf4;
+	  }
+  </style>
+ </head>
+
+ <body>
+	<div>移动效果：</div>
+	<div class="moveBox"></div>
+
+	<div>拉伸效果：</div>
+	<div class="transitionBox"></div>
+
+	<div>菜单效果：</div>
+	<ul>
+		<li><a href="http://www.baidu.cn">新浪微博</a></li>
+		<li><a href="http://www.tedu.cn">今日头条</a></li>
+		<li><a href="http://www.tedu.cn">百度新闻</a></li>
+		<li><a href="http://www.tedu.cn">凤凰新闻</a></li>
+	</ul>
+ </body>
+</html>

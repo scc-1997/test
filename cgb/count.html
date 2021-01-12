@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>计时器</title>
+		<style>
+			body{
+				margin: 50px;
+			}
+			#msg{
+				font-size: 66px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="msg">0</div>
+		
+		<button id="btnStart" onclick="start()">开始计时</button>
+		<button id="btnStop" onclick="stop()">结束计时</button>
+	</body>
+	<script>
+		var timer;
+		var count = 0;
+		var clickStart = 0;
+		
+		var btnStart = document.getElementById('btnStart');
+		var btnStop = document.getElementById('btnStop');
+		
+		function start(){
+			var msg = document.getElementById('msg');
+			clickStart++;
+			
+			if(clickStart %2 == 0){
+				clearInterval(timer);
+				btnStart.innerHTML = '继续计时';
+				clickStart = 0;
+			}else{
+				timer = setInterval(function(){
+					count += 10;
+					var rtn = getTime( count );
+					msg.innerHTML = rtn;
+				}, 10);
+				btnStart.innerHTML = '暂停计时';
+			}
+		}
+		
+		function stop(){
+			clearInterval(timer);
+			count = 0;
+			var msg = document.getElementById('msg');
+			msg.innerHTML = count;
+		}
+		
+		function getTime( count ){
+			 var h = parseInt(count / 1000 / 60 / 60);
+			var m = parseInt(count / 1000 / 60) % 60;
+			var s = parseInt(count / 1000) % 60;
+			var ms = parseInt(count / 10) % 100;
+
+			return h + '时' + m + '分' + s + '秒' + ms;;
+		}
+	</script>
+</html>

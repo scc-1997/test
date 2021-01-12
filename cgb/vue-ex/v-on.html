@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1 v-on:click="handleClick(1)">{{ msg }}</h1>
+			<h1 @click="handleClick(2)">{{ msg }}</h1>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				msg: "Hello Vue."
+			},
+			methods:{
+				handleClick: function( who ){
+					this.msg = who+"- 你好，世界";
+				}
+			}
+		});
+	</script>
+</html>

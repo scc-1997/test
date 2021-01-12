@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}}
+			<p v-show="isshow">是否展示</p>
+			<p v-if="isshow">是否展示</p>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				msg: "hello vue.",
+				isshow: false
+			}
+		})
+	</script>
+</html>

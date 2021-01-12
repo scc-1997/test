@@ -1,0 +1,122 @@
+知识回顾：
+1）开发工具，设计阶段，表设计
+PowerDesinger 15 UML+表设计
+PD好处：
+	a. 可视化工具，表，表之间关系，字段，字段类型，长度
+	b. 它可以针对不同的数据库生成不同的SQL语句（建表、建立关系）
+	SQL标准 92年，但是不同厂家数据库它扩展了SQL92，有自己的语法
+	c. 消除不同语法支持，消除不同数据库之间大部分差异，方便开发
+
+drop table if exists tb_student;
+
+/*==============================================================*/
+/* Table: tb_student                                            */
+/*==============================================================*/
+create table tb_student
+(
+   id                   int not null,
+   name                 varchar(30),
+   birthday             datetime,
+   salary               decimal(8,2),
+   primary key (id)
+);
+
+drop table TB_STUDENT cascade constraints;
+
+/*==============================================================*/
+/* Table: TB_STUDENT                                            */
+/*==============================================================*/
+create table TB_STUDENT  (
+   ID                   INT                             not null,
+   NAME                 VARCHAR2(30),
+   BIRTHDAY             TIMESTAMP,
+   SALARY               NUMERIC(8, 2),
+   constraint PK_TB_STUDENT primary key (ID)
+);
+
+mysql和oracle不同：
+a. 表名mysql习惯小写，oracle习惯大写
+b. 字段名称mysql小写，oracle习惯大写
+c. constraint 约束，主键语法不同
+d. 字符串类型mysql叫varchar，oracle叫VARCHAR2
+e. 日期类型，mysql叫datatime，oracle叫TIMESTAMP 时间戳
+f. 浮点数类型，mysql叫decimal，oracle叫number，NUMERIC
+结论：SQL都遵循SQL92标准，意味大多数SQL语句一样，但是少量SQL语句不一样
+
+2）软件开发流程
+a. 需求调研（* 端茶倒水）
+b. 需求评审（专家）
+c. 概要设计（系统分析师）
+d. 详细设计（系统分析师）
+e. 开发编码*
+f. 测试 *（自测，单元测试；测试组：集成测试，压力测试）
+g. 上线 * 指导客户使用系统
+h. 维护期 * 指导客户深层使用系统
+i. 项目结束
+
+SQL语句
+1）SQL好入门，insert,update,delete,select，精通难，select查询变化万千
+a. 多练，对语法才熟练，in，like，join，聚合函数，分组，排序
+b. 面试都会有SQL
+
+今天内容：
+1）git
+2）sql优化，原则、概念
+3）程序要访问数据库，jdbc java方式数据库连接api，完成数据库访问和维护
+
+git是什么东西？
+百度百科
+git是一个分布式版本控制系统
+
+版本控制：version control
+举例：window蓝屏，代码或者文档丢失；项目中多个人编写一个文件，冲突（人工）；代码写了很久了，找不着，新的版本不对，恢复到旧的版本；
+版本控制：把你的文件上传到一个公共地方，公共地方存储这些文件（网盘）
+为每一次用户的提交创建一个新文件，v1.0,v1.1,v1.2
+
+市场上有哪些版本控制的产品？
+a. CVS  第一代最成熟版本控制产品 2000（几乎没人使用）
+b. SVN 第二代最成熟版本控制产品 2005（文档word/excel和代码code）
+c. GIT 第三代最成熟版本控制产品 2008（代码code）
+
+SVN管理文档（权限，文档+代码）集中式管理，没有网络没法干活
+GIT（公用和私有，权限粗，代码）分布式管理，本地暂存区，提交
+GIT不能完全替代SVN，但是市场确实越来越少的使用SVN。
+
+git技术概念（内部实现版本控制体系），安装git是客户端工具
+,github git服务端（国外网站，全球，开源开发软件源码）
+,gitee github的一个镜像（复制品，每10分钟同步一次），软件国产化，码云
+
+
+git中提交本地变化到最终的远程仓库
+1）add 把工作空间的内容形成日志操作信息存放本地索引
+2）commit 把具体变化（新文件）放到本地仓库（复制）
+3）push 把本地仓库内容放到远程仓库（复制）
+
+git中把远程仓库新内容拿到本地
+1）clone 把远程仓库内容直接克隆到工作空间（隐含把内容也放到本地仓库一份）
+	第一次使用
+2）pull 起到远程仓库和本地工作空间的内容同步，远程和本地数据一致
+
+使用码云 gitee，必须先自己账号
+1）在gitee有账号，就会有自己的私人空间
+2）在本地安装Git-2.27.0-64-bit（本地客户端工具）
+git bash（这里就可以敲入git命令 add,commit,push）
+注意问题：权限，本地创建目录和文件（必须选择管理员：已管理员方式运行）
+
+验证：git是否安装好了
+
+如果从零开始：
+1）远程仓库上先的有自己的一个仓库：新建一个仓库（网页操作）
+2）本地环境和远程仓库挂钩：git命令，clone克隆
+
+
+日常每天操作命令：
+1）早上一上班，先把远程内容同步本地（把最新的内容下载到本地）
+2）如果代码变化测试本地已经没有问题，提交多次（add,commit,push）
+3）在下午下班前，必须在提交新的内容
+
+git add . //.点当前目录下包括子目录下的内容都记录日志
+git commit -m "信息随便填写"
+git push -u origin master
+
+

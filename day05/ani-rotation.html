@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				/* 横向居中0上下，auto左右自动 */
+				margin: 0px auto;
+			}
+			.earth-rotation{
+				width: 310px;
+				height: 310px;
+				/* 加背景图 */
+				background-image: url(images/earth.png);
+				border-radius: 180px;
+				
+				/* 动画，旋转360 
+					动画的轨迹：线型 linear
+					动画延时开始时间：0s
+					infinite 一直循环播放动画
+				*/
+				animation: earth-rotation 5s linear 0s infinite;
+			}
+			
+			/* 变形动画 transform，rotate旋转，旋转单位度 deg 
+				动画从0deg开始到360deg结束，刚好一周，反复播放
+			*/
+			@keyframes earth-rotation{
+				from{ transform: rotate(0deg);}
+				to{ transform: rotate(360deg);}
+			}
+			
+			/* 鼠标移入时，暂停动画播放，地球就停下来，移出继续运行 
+				animation-play-state 播放状态 paused 暂停
+			*/
+			.earth-rotation:hover{
+				animation-play-state: paused;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="earth-rotation"></div>
+	</body>
+</html>

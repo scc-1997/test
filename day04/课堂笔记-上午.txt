@@ -1,0 +1,223 @@
+知识回顾：
+1）git版本控制工具，主要管理项目的代码文件
+它相比CVS、SVN它特点，可支持分布式，外网，离线工作
+主流代码管理工具
+2）基本概念：
+	工作空间
+	本地索引
+	本地仓库
+	远程仓库
+
+	就体积而言：远程仓库>本地仓库>工作空间
+3）操作
+	把代码放到远程仓库上（上传）
+	把远程仓库上的代码获取（下载）
+
+	和网盘差异：
+	1）网盘只是简单复制文件，git管理文件，可以是一个链接
+	2）网盘文件之间没有具体联系，代码关系
+	3）文件本质一个一个，代码一个项目
+	4）网盘是没有分支 branch树杈
+		mysql 数据库，免费，oracle收购mysql，收费
+		在mysql 5.0 旧版本上，开源新的产品：percona 分支
+		mariaDB 著名分支
+
+		招商银行做项目，给包头银行做项目，海南银行
+		大项目采用分支，
+		git从基础建设时，就要提供这种分支机制，master主分支
+		origin
+	5）网盘文件没有比较做法，代码可能多人编辑（团队）代码比较，代码冲突
+
+	6）git它会对一个文件进行多个版本的复制，v1.0，v1.1，v1.2，多个文件
+	网盘秒传，1个电影，	第二个用户只分享这个文件链接地址，文件只存1份
+4）使用git命令
+	git add .			提交改变（新增文件、修改文件内容、删除文件）
+				把这些改变操作日志记录下来，本地索引
+	git commit -m "tj"		根据本地索引日志，进行提交操作，提交本地仓库
+	git push -u origin master	把本地仓库的内容提交到远程仓库
+
+	git pull 拉取，git clone 克隆
+
+5）SQL优化。面试必考的内容，占10分，是看你的数据库功底。
+	SQL优化是在很多小点上来优化：where，索引失效
+	索引中有很多类型：ALL全表扫描（最差）、index全索引扫描（其次）、range（between）范围（不错）、const常量（缓存）（最好）、ref（join）
+	工作中先实现业务，实现业务之后，想办法优化 where OR，in
+	如果数据量很小时，索引反而慢。
+	索引越多越好吗？频繁使用了索引，这时索引价值体现。如果这个几乎没用，删除。
+	表的数据如果变化，新增，修改，删除，索引都必须重构索引（重新建立）、
+	如果有大量索引的表，不适合数据频繁变更。
+
+
+2、SQL优化
+5.10.1	批量插入性能提升
+	需要事务的，mysql为每一句insert语句增加事务
+	事务自动提交
+
+	如果我有100w数据，每一句话都要开启事务，提交事务，关闭事务
+	如果在操作一张表时，数据库会对这张表锁定。加lock
+
+解决办法：
+	手工提交事务 set @@autocommit = 0;
+
+for(int j=0; j<1000000; j=j+100(
+	begin;
+	for(int i=0;i<100;i++){
+		
+			insert
+		
+	}
+	commit;
+}	
+	mysql批量新增语句：
+
+·····	````````刀秋
+insert  into `student`(`id`,`NAME`,`sex`,`birthday`,`salary`) 
+values 
+('1','张慎政','男','2020-01-01','10000.00'),
+('2','刘沛霞','女','2020-01-02','10000.00'),
+('3','刘昱江','男','2020-01-03','10000.00'),
+('4','齐雷','男','2020-01-04','20000.00'),
+('5','王海涛','男','2020-01-05','20000.00'),
+('6','董长春','男','2020-01-06','10000.00'),
+('7','张久军','男','2020-01-07','20000.00'),
+('8','陈子枢','男','2020-10-11','3000.00')
+;
+
+在一条insert SQL中提交多个记录
+
+
+5.10.2	批量删除优化，不用频繁开启和关闭事务
+假定id是范围，int 1,2,3， 10000
+delete from student where id<=100
+delete from student where id<=200
+
+5.10.3	伪删除设计
+给表增加一个是否删除标识字段isdel，tinyint，0未删除,1已删除
+删除数据，不是真正执行delete语句，执行update
+update student set isdel=1 where id=100;
+用户不能看见被删除的“记录”
+select * from student where .... and isdel=0
+
+优点：
+a. 修改标识的速度远高于删除语句
+b. 这些历史数据，可以用来数据分析，数据挖掘，用户画像，大数据杀熟
+
+5.10.4	提高group by语句的效率
+
+分组
+查询各班男的同学数量
+select class,count(*) from student
+where
+group by count(*)
+having
+
+如果一个过滤条件，即可以放在where，也可以放在having来实现
+优先放在where中，每一步操作都会在内存中形成一个临时表
+原则：临时表越小越好
+
+5.10.5	复合索引最左特性
+
+单个索引（id主键）
+多个字段，复合索引，联合索引（name和salary）
+
+#创建复合索引
+ALTER TABLE student 
+ADD INDEX idx_name_salray(NAME,salary)
+#ref使用索引，多个字段
+EXPLAIN
+SELECT * FROM student WHERE NAME='陈'
+	复合索引特性：最左特性原则
+创建一个复合索引，相当于创建2个索引
+(k,m)创建(k)、(k、m)
+NAME='陈'
+NAME='陈' AND salary=3000
+左边依次拼接
+(i,j,k)创建(i)/(i,j)/(i,j,k)
+
+EXPLAIN
+SELECT * FROM student WHERE salary=3000
+
+EXPLAIN
+SELECT * FROM student 
+WHERE NAME='陈' AND salary=3000
+
+EXPLAIN	#不满足最左特性，优化器（交换律）
+SELECT * FROM student 
+WHERE salary=3000 AND NAME='陈'
+
+5.10.6	排序字段创建索引
+EXPLAIN	#没有索引，sex不是索引字段
+SELECT id,NAME FROM student ORDER BY sex
+
+EXPLAIN	#有，满足最左特性
+SELECT id,NAME FROM student ORDER BY NAME
+
+EXPLAIN	#没有，sex是没有索引
+SELECT id,NAME FROM student ORDER BY NAME,sex
+
+EXPLAIN	#有，满足最左特性
+SELECT id,NAME FROM student ORDER BY NAME,salary
+
+排序时，不能select *，*包括非索引索引字段，造成索引失效
+规则：为了提高排序性能，频繁出现在排序order by后面的字段应该创建索引
+
+5.10.7	删除冗余和重复的索引
+利用最左特性，它会自动创建多个索引，别和它充分
+每个索引都需要单独占用空间，单独维护（数据新增、修改、删除）
+
+
+5.10.10	in子查询的优化
+#in子查询慢
+
+SELECT * FROM student
+WHERE id IN 
+(SELECT id FROM student WHERE id<5)
+
+SELECT id FROM student WHERE id<5
+
+SELECT * FROM student
+WHERE id IN 
+(1,2,3,4)
+
+5.10.11	尽量使用union all替代union
+
+#假定两次查询没有重复记录，使用UNION ALL
+#union是要去重，耗时
+select * from student where id<=3
+union all
+select * from student where id>3
+
+
+JDBC，数据库目的？
+java程序访问数据库mysql，有一套标准JDBC java database connect
+
+驱动程序：由数据库厂商提供
+jar包：mysql/oracle
+
+注册驱动：Class.forName("") 
+DriverManage来创建一个链接
+Connnection 链接，java程序和数据库通道
+Statement对象 语句，执行sql语句
+从数据库获取数据，返回结果表
+放在ResultSet对象中，结果集
+
+步骤：
+1）下载jar包，驱动包
+2）idea创建一个project，jdbc2011
+3）src平齐目录中lib目录，把jar放进去
+4）通知本项目，我要依赖这个jar包，这样才能调用
+5）选择file菜单下的 project structure菜单
+选择modules模块，选择Dependencies页夹
+6）把jar绑定这个工程，我们代码中才能使用它
++号，选择第一个jars。。。
+7）到你自己的位置
+IdeaProjects\jdbc2011\lib\mysql-connector-java-5.1.32.jar
+成功的条件：jar前面多了个小箭头，可以点开，展示package就代表成功
+、
+
+mysql 8.0+以上，驱动jar，
+
+
+练习，先把上面位置选中
+
+

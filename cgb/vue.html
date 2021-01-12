@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<div id="app"></div>
+	</body>
+
+	<script type="text/javascript">
+		function Vue(options){
+				var id = options.el;					//找到根标签的id
+				var root = document.getElementById(id);	//根据id 找到对象
+				
+				var title = options.data.user.username +" "+ options.data.item.title;	//从配置对象option中找到数据
+				root.innerHTML = title;				//把数据显示在根标签上
+			}
+		
+			var options = {
+					el:"app",
+					data:{
+						user:{
+							username:"tony"
+						},
+						item:{
+							title:"iPhoneX",
+							price:8000
+						}
+					}
+			}
+			//启动框架
+			var vue = new Vue(options);
+	</script>
+
+</html>

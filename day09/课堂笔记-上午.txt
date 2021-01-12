@@ -1,0 +1,116 @@
+
+早期开发，VB（Client/Server,word）微软，
+B/S（Broswer/Server）ASP，ASP+COM+（框架）2000年，IIS（web中间件）
+.net c#抄袭java
+
+java 2004，JSP+Servlet，Tomcat/JBoss/WebSpare/WebLogic（web中间件）
+j2ee EJB2.0,3.0死了
+利用别人：框架：旧三大框架：struts1/struts2+spring（写了本书）+hibernate
+JSP(JSTL）+Servlet。分层体系（MVC model view controller）
+新三大框架：springmvc+spring+mybatis
+
+h5+css3(bootrap)+Vue（NodeJS web中间件）
+
+大前端+===ajax+json===+大后端
+
+多敲多练，手感和语感
+main alt+/
+sout  font-size,font-weight
+
+
+Spring至理名言：不重复发明轮子，术有专攻
+springmvc和前端交互，请求和响应
+spring 业务逻辑处理
+mybatis 和数据库交互
+
+Vue 加强html，替代jQuery。
+特点：
+1）数据驱动
+	javascript api document.getElementById("username")
+	jQuery api $("#username")
+
+	api 核心不是api，而是最终一旦结果定好，修改页面值，直接修改数据
+2）组件化
+
+
+Vue非常强大，可以做很多事情，分步执行
+1）最小引入Vue，加载vue.js
+2）按Vue形式来写代码
+
+创建新项目
+创建js目录
+把vue.js拷贝到里面去
+
+1）引入vue支持
+<script src="js/vue.js"></script>
+2）body中创建<div id="app"></div>
+3）写一段<script>
+4）创建vue对象
+	var vm = new Vue(para)
+	el/data/methods/mounted
+5）{{msg}} 插值表达式
+	插值表达式中的变量必须来自data中的定义
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}}
+			{{info}}
+		</div>
+	</body>
+	<script>
+		//创建Vue对象，给这个对象设置参数el、data，准备数据、
+		
+		var data = {
+			msg : "我爱地安门",
+			info: "要带口罩"
+		}
+		var para = {
+			el: "#app",		//挂载 element
+			data : data		//数据，对象
+		}
+		var vm = new Vue(para)
+	</script>
+</html>
+
+//都是匿名函数写法，安全
+		new Vue({
+			el: "#app",
+			data: {
+				msg : "我爱天安门2"
+			}
+		})
+
+
+三种data定义的方式：
+
+			// data: function(){		//函数格式
+			// 	return {
+			// 		msg: "我爱天安门3"
+			// 	}
+			// }
+			// //es6 标准函数格式
+			// data(){		//data既是咱们变量，也是函数名称
+			// 	return {
+			// 		msg: "我爱天安门4"
+			// 	}
+			// }
+			data:{		//对象格式，最常用的
+				msg: "我爱天安门"
+			}
+
+复制一行：ctrl+shift+r
+
+有很多辆车：（对象数组）
+1、保时捷707，红色
+2、劳斯莱斯，白色
+3、jeep，绿色
+
+

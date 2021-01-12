@@ -1,0 +1,176 @@
+安装element-ui组件，出错
+1）重新安装一遍，可能网络异常，启动时，报错
+2）npm i element-ui -D		#i代表安装，D代表开发环境
+	npm install element-ui -S	#生产环境
+3）cnpm，安装这个命令，来执行上面语句
+
+相关字体、js、css文件总目录element-ui必须放在src目录下
+
+增加小图标功能：
+<i class="el-icon-s-tools"></i>
+这些图标都是element-ui定义好的，
+这些名称到官网查询
+
+
+增加删除功能：
+1）增加删除按钮
+2）增加删除事件
+	slot-scope vue带的，它实现动态编程
+	它会提供当前行的索引值 scope.$index
+3）从list中删除数据 api，splice函数
+
+（删除）splice(1,1) 
+第一个参数，索引位置
+第二个参数，如果是1是删除
+（新增）splice(1,0,"chen")
+第一个参数，索引位置
+第二个参数，0删除的个数，没删除
+第三个参数，后面可以多个值，查询到索引位置
+（修改）s.splice(1,1,"chen")
+第一个参数，索引位置
+第二个参数，1删除一个
+第三个参数，后面写的值插入
+
+新增、修改，弹出对话框（复用这个对话框）
+设置一个全局变量：dialogVisible
+true展示，false不展示
+
+<el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  :before-close="handleClose">
+  <span>这是一段信息</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
+
+表单
+全局数据：模型：model，一条数据
+m: {
+        name:null,
+        author:null,
+        price:null,
+        intro:null
+      }
+
+textarea html标签文本域，支持多行
+
+<el-form :model="m" label-width="100px">
+  <el-form-item label="活动名称" prop="name">
+    <el-input v-model="m.name"></el-input>
+  </el-form-item>
+
+  <el-form-item label="活动形式" prop="desc">
+    <el-input type="textarea" v-model="m.desc"></el-input>
+  </el-form-item>
+
+把m模型中的数据添加到页面
+list数据，splice
+
+
+修改：
+1）弹出对话框
+2）对话框中要修改的那条对应信息
+   vue组件它会直接把这个数据封装row中
+3）保存（复用）修改这条值
+
+（修改）s.splice(1,1,"chen")
+如何实现新增或者修改的判断呢？
+定义一个全局变量 isUpdate
+新增对话框：isUpdate=false
+修改对话框：isUpdate=true
+
+index代表当前行的索引值
+
+当修改数据时，因为双向绑定，数据变化
+页面数据也随之变化，这是不对！！！
+this.m = row
+row代表是页面，m数据
+是同一个引用，修改其中一个，都改了
+把它们关系断开，创建新对象
+数据copy，拷贝row数据，新对象
+把新对象赋值this.m
+
+10遍，vue面试都靠，vue做项目
+
+小结：
+1、自定义组件
+1）
+	src/componets/Book.vue
+2）注册，它都是根组件的孩子，子组件 App.vue
+	import Book from './components/Book.vue'
+export default {
+  components:{
+    Book
+  }
+}
+3）App.vue模板地方
+
+2、引入第三方element-ui，业界no1
+main.js全局引入
+1）安装element-ui组件
+ npm i element-ui -D
+ npm install element-ui -S
+3）修改main.js，写下面的3句话
+import ElementUI from 'element-ui'
+
+拷贝css等文件到src下
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+
+注册后子组件就可以使用
+3、展现数据
+:data="list"在data数据区域定义数组对象
+表格列prop="name"，每条数据中key
+
+4、删除
+删除某行，是有一个索引值？
+vue给slot-scope对象，封装数据scope对象
+scope.$index
+this.list.splice(index, 1) 从list数据中删除对应行，删除一行数据
+
+4、弹出对话框 dialog
+dialogVisible 变量，是否展现
+
+5、表单 form
+<el-form :model="m" 双向绑定数据来源
+<el-input v-model="m.name" 双向绑定
+在data中声明，临时存储数据
+m: {
+        name:null,
+        author:null,
+        price:null,
+        intro:null
+      },
+
+6、新增
+this.list.splice(0, 0, this.m)
+this.m = {}   //把模型m的属性值置空	否则下一次进入，内容就不为空
+
+
+5、修改
+this.list.splice(this.index, 1, this.m)     //修改
+
+6、副作用，修改页面m和row同引用，一改全都改
+断掉它们关系，引用。
+this.m = this.copy(row)
+
+copy: function(oldObj){ //复制对象
+      var newObj = {}
+      for(var o in oldObj){   //for循环遍历，o代表下标
+        newObj[o] = oldObj[o]
+      }
+      return newObj;
+    }
+两个对象内容一致，是两个对象
+
+
+demo 前端vue，
+ajax，java（访问数据库，SSM大框架），json，解析json，存储到list
+
+
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript访问DOM树，真厉害</title>
+		<script>
+			/* 
+				alert( document.title );
+				谷歌浏览器 chrome 内置一个调试器
+				console浏览器提供对象
+				log方法，写日志
+				打开调试器：f12
+			 */
+			console.log( document.title );
+		</script>	
+	</head>
+	<body>
+		<h1>javascript 操作 DOM案例</h1>
+
+		<div>
+			<a href="http://www.taobao.com" target="_blank">淘宝</a>
+			<a href="http://www.jd.com" target="_blank">京东</a>
+			<a href="http://www.pinduoduo.com" target="_blank">拼多多</a>
+		</div>
+	</body>
+	<script>
+		/* 访问h1标签 */
+		var h1 = document.getElementsByTagName("h1")[0];
+		console.log( h1.innerText )
+		
+		h1.innerText = "<font color='red'>js 操作 DOM树</font>";
+		h1.innerHTML = "<font color='red'>js 操作 DOM树</font>";
+		
+		/* 获取页面的所有a标签，得到多个值，是一个数组的结构 */
+		var as = document.getElementsByTagName("a");
+		console.log( "第一个a标签的内容："+as[0].innerText )
+		console.log( "第一个a标签的链接："+as[0].href )
+		
+		as[0].innerText = "京淘";
+		as[0].href = "http://act.codeboy.com";
+		
+		console.log( "第二个a标签的内容："+as[1].innerText )
+		console.log( "第二个a标签的链接："+as[1].href )
+		
+		console.log( "第三个a标签的内容："+as[2].innerText )
+		console.log( "第三个a标签的链接："+as[2].href )		
+	</script>
+</html>

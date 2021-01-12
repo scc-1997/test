@@ -1,0 +1,30 @@
+<!DOCTYPE html>     
+<html>     
+<head>     
+    <meta charset="UTF-8">     
+	<title>旋转地球</title>
+    <style type="text/css">
+		body{
+			margin-top: 50px
+		}
+		#rotation-earth{
+			margin: 0 auto;
+			width: 310px;
+			height: 310px;
+			background: url(img/earth.png);
+			
+			border-radius: 300px;
+			-webkit-animation: run 6s linear 0s infinite;
+		}
+		
+		@-webkit-keyframes run{
+			from{ -webkit-transform: rotate(0deg);}
+			to{ -webkit-transform: rotate(360deg);}
+		}
+		
+    </style>     
+</head>     
+<body>     
+    <div id="rotation-earth"></div>     
+</body>
+</html>

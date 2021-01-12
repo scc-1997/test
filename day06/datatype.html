@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			var name = "chenzs";
+			var age = 18;
+			var sex = true;
+			name = 123;	//整数覆盖字符串，变量类型发生变化
+			
+			console.log(name);
+			console.log(age);
+			console.log(sex);
+			
+			/* 定义一个add的函数，有两个参数 */
+			var add = function(a, b){
+				return a+b;
+			}
+			console.log( add(123, 456) );  //579
+			console.log( add("123","456") );  //123456
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

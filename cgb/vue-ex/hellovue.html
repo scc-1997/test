@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>基本运算：
+				<li>{{ 10+20}}</li>
+				<li>{{ 10-20}}</li>
+				<li>{{ 10*20}}</li>
+				<li>{{ 10/20}}</li>
+			</ul>
+			<ul>三目运算：
+				<li>{{ age>16 ? '成年':'未成年'}}</li>
+			</ul>
+			<ul>字符串：
+				<li>{{ msg }}</li>
+				<li>{{ msg.length }}</li>
+				<li>{{ msg.substring(6) }}</li>
+			</ul>
+			<ul>时间：
+				<li>{{ time }}</li>
+				<li>{{ time.getFullYear() }}</li>
+				<li>{{ time.getMonth()+1 }}</li>
+				<li>{{ time.getDate() }}</li>
+			</ul>
+			<ul>喜好：
+				<li>{{ hobbys }}</li>
+				<li>{{ hobbys[2] }}</li>
+			</ul>
+			<ul>对象：
+				<li>{{ girlFriend }}</li>
+				<li>{{ girlFriend.age }}</li>
+				<li>{{ girlFriend.msg }}</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				msg : "Hello Vue!",
+				age : 16,
+				time : new Date(),
+				hobbys : ["乒乓球","历史","计算机"],
+				girlFriend : {
+					name : "如花",
+					age : 16,
+					msg : "如花似玉"
+				}
+			}
+		});
+	</script>
+</html>

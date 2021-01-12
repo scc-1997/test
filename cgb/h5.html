@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>ccs特效</title>
+
+  <style>
+	.moveBox{
+		width: 100px;
+		height: 100px;
+		background-color: #1199FF;
+		
+		animation: mymove 5s infinite;
+	}
+	@keyframes mymove{
+		from{width:0px}
+		to{ width: 300px;}
+	}
+	
+	.transitionBox{
+		width: 100px;
+		height: 100px;
+		background-color: #EE1166;
+		transition: width 2s;
+	}
+	.transitionBox:hover{
+		width: 400px;
+	}
+	
+	ul{
+		list-style: none;
+	}
+	li{
+		float: left;
+		margin-left: 8px;
+		background-color: #1199FF;
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		-webkit-transform: skewX(30deg)
+	}
+	li:hover{
+		background-color: red;
+	}
+	a{
+		text-decoration: none;
+		color: white;
+		display: block;
+		-webkit-transform: skewX(-30deg);
+	}
+  </style>
+ </head>
+
+ <body>
+	 
+	 
+	<div>移动效果：</div>
+	<div class="moveBox"></div>
+
+	<div>拉伸效果：</div>
+	<div class="transitionBox"></div>
+
+	<div>菜单效果：</div>
+	<ul>
+		<li><a href="http://www.baidu.cn">新浪微博</a></li>
+		<li><a href="http://www.tedu.cn">今日头条</a></li>
+		<li><a href="http://www.tedu.cn">百度新闻</a></li>
+		<li><a href="http://www.tedu.cn">凤凰新闻</a></li>
+	</ul>
+ </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.transitionbox{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				
+				/* 拉伸效果的动画 
+					transition 拉伸动画
+					width 拉宽，动画持续时间2s
+				*/
+				transition: width 2s;
+				position: relative; /* 以相对位置，元素才能动起来 */
+			}
+			
+			/* 拉伸效果不是使用关键帧方式触发动画执行，
+			利用鼠标移动画体至少来触发
+				注意写法，样式之后:hover(鼠标移入触发)，不能有空格
+			*/
+			.transitionbox:hover{
+				width: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="transitionbox"></div>
+	</body>
+</html>

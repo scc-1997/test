@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.book{
+				position: relative;
+				width: 307px;
+				height: 474px;
+				box-shadow: 10px 10px 10px rgba(0,0,0,0.2);
+				transform-style: preserve-3d;
+				transition: 1s;
+				cursor: pointer;
+			}
+			.book:before{ 	/*中间不能有空格*/
+				content: '';
+				position: absolute;
+				height: 474px;
+				width: 69px;
+				transform-origin: left;
+				background:url(./img/book/middle.png);
+				background-position: center;
+				background-size: 69px 474px;
+				transform: rotateY(-90deg) translateX(-34px);
+				box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+			}
+			.book:after{ 	/*中间不能有空格*/
+				content: '';
+				position: absolute;
+				width: 307px;
+				height: 474px;
+				transform-origin: center;
+				background:url(./img/book/back.png);
+				background-position: center;
+				background-size: 307px 474px;
+				transform: rotateY(180deg) translateZ(69px);
+				box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+			}
+			.book:hover{
+				transform: rotateY(45deg);
+			}
+			.book:active{
+				transform: rotateY(180deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="book">
+				<img src="img/book/front.png" />
+			</div>
+		</div>
+	</body>
+</html>

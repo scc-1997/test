@@ -1,0 +1,202 @@
+git开发常用工具，实现代码版本控制，团队开发
+实际开发中，团队如何管理共享代码
+
+日常开发每天都有涉及到git文件提交
+1）add 把工作空间代码，记录它变化信息（新增，修改，删除）提交索引
+2）commit -m "提交备注信息" 提交信息到本地仓库
+3）push -u origin master 推送信息到远程仓库，在gitee网站来浏览信息
+
+2、SQL优化
+SQL实现一个业务有多种方式，总有一个方法相对而言最优，体现速度
+优化，对查询SQL而言
+大多是一些实际中摸索出来的经验，
+
+SQL编译器（优化器）我们提交SQL没有直接执行，SQL的优化器先进行优化
+量变引起质变
+
+SELECT * FROM student
+
+SELECT id,NAME,sex,birthday,salary,age 
+FROM student
+
+准备测试数据
+SQL中库，表括起来的不是单撇，叫刀秋，波浪线按键它下面的“单撇”
+` 特殊字符，把特殊名字扩起来，例如：名称中有个空格
+
+`user name`
+
+varchar和char的区别？
+name varchar(6)，char(6)
+name="tony"	varchar 4只存储真实长度，不大于声明的长度
+name="tony  "	char 6，如果内容不足，自动用空格补充
+
+decimal 浮点数 7,2	（3.14）
+整数部分是几位？5，不包括小数点
+小数部分是几位？2
+
+创建表的主键，数据库系统会自动创建主键索引，也是唯一索引 unique
+
+current_timestamp() mysql自定义函数（类似java api）当前时间
+字段default默认值：不填null，
+
+tinyint 小整型，类似java，short
+
+练习：5分钟，15:30继续
+修改下表的时间戳字段
+按着上面的修改
+
+5.9.2	避免在where子句中使用or来连接条件
+SELECT * FROM student
+WHERE id=1 OR salary=3000
+
+SELECT * FROM student WHERE id=1
+UNION ALL
+SELECT * FROM student WHERE salary=3000
+
+5.9.3	使用varchar代替char
+指字符很多情况下，
+4000 mysql最大varchar容量
+varchar(4000) 真正100
+char(4000)真正4000，其他不是数据地方以空格，浪费空间
+
+如果固定长度，此时填满，此时推荐char
+
+5.9.4	尽量使用数值替代字符串类型
+数据库是没有布尔类型 boolean，mysql tinyint替代
+
+5.9.5	查询尽量避免返回大量数据
+
+EXPLAIN
+SELECT * FROM student WHERE id=1
+#id varchar，type=ALL  没有使用索引，全表扫描，慢
+#id int，type=const 使用索引，常量，快
+
+
+#给name字段增加索引
+
+EXPLAIN
+SELECT NAME FROM student
+
+#alter语法修改表，add index增加索引
+#index_name索引起个名字（针对哪个字段）
+ALTER TABLE student ADD INDEX index_name(NAME)
+
+TYPE=ALL/INDEX/RANGE/ref/const
+
+EXPLAIN SELECT * FROM student
+WHERE NAME LIKE '陈'  #等于陈
+
+EXPLAIN SELECT * FROM student
+WHERE NAME LIKE '陈%' #%通配符，陈开头
+
+EXPLAIN SELECT * FROM student
+WHERE NAME LIKE '%陈' #陈结尾，索引失效
+
+EXPLAIN SELECT * FROM student
+WHERE NAME LIKE '%陈%' #含有陈，索引失效
+
+
+5.9.11	索引不宜太多，一般5个以内
+如果当数据新增、修改、删除，索引需要重构
+
+5.9.12	索引不适合建在有大量重复数据的字段上
+性别：男，女
+状态：1上架，2下架
+
+5.9.13	where限定查询的数据
+如果知道查询结果为某一个数据时，使用id
+
+#假定，张慎政老师男的，其他人都是女
+EXPLAIN SELECT * FROM student WHERE sex='男'
+#优化器，EXPLAIN SELECT * FROM student WHERE id=1 AND sex='男'
+
+5.9.14	避免在索引列上使用内置函数
+#出生年月+7天，日期函数date_add(date,INTERVAL 7 DAY)
+
+SELECT birthday,birthday+7 FROM student
+
+ALTER TABLE student ADD INDEX idx_birthday(birthday)
+
+EXPLAIN
+SELECT * FROM student
+WHERE DATE_ADD(birthday,INTERVAL 7 DAY) >=NOW();
+
+EXPLAIN
+SELECT * FROM student
+WHERE  birthday >= DATE_ADD(NOW(),INTERVAL 7 DAY);
+
+5.9.15	避免在where中对字段进行表达式操作
+EXPLAIN
+SELECT * FROM student WHERE id+1-1=1	#索引失效
+EXPLAIN
+SELECT * FROM student WHERE id=1+1-1	#正确
+
+5.9.16	避免在where子句中使用!=或<>操作符
+EXPLAIN
+SELECT * FROM student WHERE NAME<>'陈'	#索引失效
+
+5.9.17	去重distinct过滤字段要少
+EXPLAIN
+SELECT DISTINCT * FROM student
+
+#使用distinct去重时，字段不能是所有，也不能是非索引字段
+EXPLAIN
+SELECT DISTINCT NAME FROM student
+
+5.9.18	where中使用默认值代替null
+default 日期，默认null
+
+
+ALTER TABLE student ADD INDEX idx_age(age)
+
+EXPLAIN	#不能null，它肯定索引失效
+SELECT * FROM student 
+WHERE age IS NOT NULL
+
+EXPLAIN	#不能用=号，它可能索引失效
+SELECT * FROM student 
+WHERE age>=0
+
+EXPLAIN #索引生效
+SELECT * FROM student 
+WHERE age>0
+
+小结：
+1）git 版本控制工具，管理我们项目的代码，主流开发工具
+公司会自己搭建一个github，你配置下，从公司库中下载代码
+2）git（技术总称，客户端git bash）、github（远程仓库-国外）、gitee（远程仓库-国内，镜像库，10分钟同步一次）
+3）概念：
+	a. 工作空间：仓库代码都放在工作空间，开发者可以直接操作
+	b. 本地索引：它就记录对工作空间中改动（新增，修改文件内容，删除文件，包括文件夹）一次改动就是一条记录（相当执行计划）
+	c. 本地仓库：它存放项目中所有文件，含有其他同事的文件
+	d. 远程仓库：它是所有库容器（最全）github、gitee、其他镜像网站
+4）这4个内容是如果沟通？
+	a. add 把工作空间中的文件放到本地索引中，指定文件名
+		add README.md
+		add .  点代表当前目录下所有改变
+	b. commit 把本地索引中内容放到本地仓库中（内在的处理）
+		commit -m "备注"
+	c. push 把本地仓库中内容放到远程仓库（最终）远程仓库就有了最新代码，其他同事就可以更新我写的这部分代码
+	d. pull/clone 拉取（同步）远程仓库内容放到工作空间（本地仓库）
+		克隆，就相当于复制，第一次从远程仓库保存数据下来
+
+5）git每天要做的工作？
+	add,commit,push 每写完一段代码，测试没问题，没问题就上传
+	pull 拉取最新项目代码
+
+6）SQL执行顺序：死记
+
+明天任务：
+1）高级SQL优化，提前浏览一下
+2）jdbc 代码明天来实现，java来访问数据库
+3）今晚晚上安装软件HBuilderX，网页开发工具
+
+下载的官网：
+https://www.dcloud.io/hbuilderx.html
+
+
+
+
+
+
+

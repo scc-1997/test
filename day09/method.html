@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}}
+			{{show()}}
+			<button v-on:click="show()">点我有惊喜</button>
+			<button @click="show()">点我有惊喜2</button>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			data:{
+				msg: "vue 真棒"
+			},
+			methods:{	//定义多个方法
+				//声明方法
+				show: function(){
+					console.log("没有惊喜有惊吓")
+				}
+			}
+		})
+	</script>
+</html>

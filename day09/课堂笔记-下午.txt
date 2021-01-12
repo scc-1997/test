@@ -1,0 +1,262 @@
+Vue，前端进入大前端，和后端抗衡，大前端+大后端
+Vue第一特点：全新的开发方式，由“小作坊”api工具类方式，
+过渡数据驱动开发方式，开发者投入更多精力数据data
+Vue是必然趋势，编程思想，最大价值
+
+如何实现Vue这种编程思想？实际增强html表现力
+标准的html标签太弱了，例如：html是没有for循环
+js可以做到，大量js代码，jquery可以做到，大量js代码
+vue它没有使用新技术（jsp+jstl）直接在标签上增加属性
+<div v-for="(o,i) in hobby"><div>
+而vue厉害，没有破坏原来结构，只是新增属性
+vue.js中对这些属性进行特殊处理，例如：for循环变量
+（jstl在服务端实现），vue在客户端浏览器端实现
+
+1、引入vue.js
+2、在body中div id="app"
+3、<script>脚本，
+new Vue({
+  el:"#app",
+  data:{ 
+     msg: "hello" 
+  },
+  methods:{
+
+  }
+})
+4、插值表达式 {{msg}}
+
+插值表达式有个问题：会有短暂闪烁，
+页面先解析{{msg}}，然后vue才开始解析
+vue提供解决方案：
+v-cloak 命令command
+利用css，可以让标签不显示
+
+v-model 命令，双向绑定
+1）js只能操作标签，修改标签的值，
+2）vue可以失效双向的变化
+	页面的值变化，数据变化
+	数据变化，页面也改变
+实现某个改变，其他的引用自动刷新，保证数据一致性，比较方便
+
+v-bind，让页面数据和标签区分
+
+做成可以配置的，vue.data中去配置
+<a href="http://www.pinduoduo.com">拼多多</a>
+
+href="{{url}}" vue和html规范冲突，所以vue没解析，报错
+v-bind:href="url"
+
+
+v-show和v-if有什么区别？
+v-show本质是if判断，但是内容都在页面展示，内容是在html页面中
+v-if它是vue进行解析，解析过程中判断不成立，就删除，元素是不存在
+性能谁高？
+业务角度：业务场景
+1）页面值频繁进行切换，v-show，样式修饰性能更高
+2）页面值通常都是一个结果，v-if
+
+v-text和v-html区别？
+1）text纯文字 
+2）html可以解析标签
+{{插值表达式}}会晃眼，v-text不会
+
+Vue渐进式框架：
+1）vue.js核心
+2）组件component：通用，登录，菜单。。。
+3）routing 路由：url路径变化
+4）state管理：登录信息，who
+5）构建项目工具，npm（依赖包 element-ui）,webpack（打包）+nodejs
+vue可以按需分配，
+
+创建Vue项目，
+按钮，表格，表单，对话框，执行事件，element-ui
+不能只用vue.js，需要额外很多工作量
+、
+npm（node package manager）
+nodejs基于v8引擎，chrome
+
+必须先有nodejs环境，
+node-v8.11.3-x64.msi
+
+检查nodejs环境：
+1）node -v  -v参数，查询版本
+2）npm -v  -v参数，查询npm版本
+https://registry.npm.taobao.org/
+淘宝对npm做了一个镜像网站，（复制），飞快
+
+3）把npm库配置到淘宝镜像，速度快
+npm config set registry https://registry.npm.taobao.org
+4）安装vue-cli脚手架
+npm install vue-cli -g	-g全局安装
+5）验证vue脚手架是否安装
+vue -V 
+或者
+vue --version
+6）找一个目录作为工作空间
+我们创建vue项目就会放在这个目录下
+
+C:\2011\cgb2011
+
+7）创建vue项目
+vue init webpack jt
+init初始化，webpack打包工具，
+jt项目名称，是目录，
+在工作空间中生成新目录,jt
+   a.项目名称，默认回车
+   b. 选择路由 vue-router 时，选y
+   c. ESLint 检查代码，选n
+   d. unit tests，选n
+   e. tests Nightwatch，选n
+   f. Yes,user NPM，选y，回车
+
+如果没有出错，顺利完成
+出现两句话
+cd jt
+npm run dev
+启动开发环境，启动web服务
+http://localhost:8080
+
+localhost代表本机，每个人都有这个环境
+8080服务端口，如果你的8080被占用
+它会自动8081
+
+浏览器访问这个地址，
+如果大大的Vue logo出现，就代表环境安装好了
+
+后期我们都是在这个脚手架的基础上来开发
+改造项目
+
+也可以参考：超级文档中。10.8和10.10  
+
+jt目录下：
+build:
+	webpack.base.conf.js 配置文件
+	webpack.dev.conf.js 配置开发环境
+node_modules：第三方包，编译后，下载的文件
+src	开发的文件都放在里面
+	assets 静态资源（logo）
+	components 组件
+	    HelloWorld.vue 模板
+	router路由
+	    index.js 路由首页
+	App.vue 根组件（树结构）
+	main.js 全局的js（elementui）
+index.html 首页
+package.json 启动配置
+
+使用jt项目
+在hbuilderx中进行开发
+右键，从本地目录导入
+选择你安装的jt目录（C:\2011\cgb2011\jt）选自己的
+
+
+index.html首页：<div id="app"></div>
+main.js	创建new Vue()
+App.vue vue模板文件，编译会自动放入html页面中
+中有3部分：
+	<template>就是模板，html片段
+	<script> vue代码，js代码
+	<style> css样式
+
+	<router-view/>调用子组件HelloWorld.vue
+
+原来vue.js一去不复返了，小项目玩法，
+大型项目，有规矩
+main.js公用js引入，全局
+在里面默认就调用根组件，App.vue
+
+
+小结：
+1）vue提供大量命令，v-开头
+vue通过给html标签增加属性来实现
+怎么标识属性是html的属性，还是vue的属性呢？
+它就增加前缀v-
+2）vue.js代码
+https://cdn.jsdelivr.net/npm/vue/dist/vue.js
+官网下载，老师给的
+
+3）数据驱动
+	a. 写框架结构
+		创建Vue对象，设置数据
+		body中定义div id="app"
+		通过el进行挂载
+		插值表达式，所有Html标签增加v-属性
+	b. data中定义数据
+		3种
+	data:{ //对象格式，最常用的
+	  msg: "我爱天安门"
+	}
+	{对象}，对象中kv结构，通过k就可以访问value
+
+	data: function(){		//函数格式
+	  return {
+	    msg: "我爱天安门3"
+	  }
+	}
+	
+	//es6 标准函数格式
+	data(){		//data既是咱们变量，也是函数名称
+	  return {
+	    msg: "我爱天安门4"
+	  }
+	}
+
+
+4）可以自定义方法
+
+new Vue({
+	el: "#app",
+	data:{
+		msg: "vue 真棒"
+	},
+	methods:{	//定义多个方法
+		//声明方法
+		show: function(){
+			console.log("没有惊喜有惊吓")
+		}
+	}
+})
+
+5）命令：
+v-bind，html冲突，怎么识别是vue的呢？
+v-bind:href="url"，url就取在data中的定义
+:href="url，简写
+
+v-model 双向绑定
+	网页的改变，数据改变
+	数据改变，网页也改变
+
+v-show == v-if
+	v-show 内容就在页面上，通过样式控制是否展示
+	v-if 如果false，内容不在页面上
+
+v-text和v-html
+	v-text 纯文本
+	v-html 可以解析html标签
+
+6）vue脚手架
+	a. 安装nodejs
+	b. 安装npm/webpack（含在nodejs中）
+	c. 安装vue-cli 脚手架，一套写好的基础代码
+
+7）脚手架项目下的文件：
+	a. index.html 首页
+	b. main.js 全局js文件，加载新组建 element-ui，全局css
+	c. App.vue vue文件其实就是html文件
+		1)<template>模板，html代码
+		2）<script> js脚本，vue语法
+		3）<style>样式
+	d.可以嵌套子组件 <router-view/>
+		router目录下的HelloWorld.vue文件
+
+
+练习：修改HelloWorld.vue的代码，看看效果
+增加标签，按钮
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<my-component></my-component>
+		</div>
+	</body>
+	<script>
+		var cp1 = Vue.extend({
+			template: '<h1>我是个组件，我可以复用哦</h1><div>123</div>'
+		})
+		
+		Vue.component('myComponent', cp1);
+		
+		new Vue({
+			el: "#app"
+		});
+	</script>
+</html>

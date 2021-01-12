@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<button id="zfbPay" onclick="zfbPay()">支付宝支付</button>
+			<button id="wxPay">微信支付</button>
+		</div>
+	</body>
+	<script>
+		//自定义一个js的函数，前期绑定clic事件
+		function zfbPay(){
+			//1.把按钮消失
+			//$("#zfbPay").hide();
+			
+			//2.把按钮禁止，attr，prop
+			$("#zfbPay").attr("disabled", true);
+			$("#zfbPay").text("您支付成功，不要再次点击，请稍后");
+		}
+		
+		//后期绑定，利用jQuery代码给上面的按钮加一个事件
+		$("#wxPay").click(function(){
+			//匿名函数，好处私有，其他线程无法访问，多线程安全
+			//$("#wxPay").hide();
+			$(this).hide();	//$(this) 代表当前对象，微信按钮
+		})
+	</script>
+</html>

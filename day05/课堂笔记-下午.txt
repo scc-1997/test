@@ -1,0 +1,121 @@
+h5功能，提供动画（flash）
+animation 不用作为重点
+
+h5还提供播放视频和音频
+html本身不支持，插件js，flash
+之前需要几十行代码
+
+一行代码搞定
+
+表单，最重要的，网页和后台进行交互
+form，里面有很多标签
+：文本框、复选框、按钮。。。
+html很难看
+css和浏览器不兼容（css在ie显示正常，在谷歌浏览器上异常）
+bootstrap css文件，做多套。直接使用它来美化页面
+h5
+
+h1标签：标题标签，h1~h6 号越大字越小
+<label>标签：名字
+input标签有很多，通过type去区分
+	text	文本框，输入汉字英文
+	number	新标准，数字框，只能输入数字
+	radio	单选框，只能选择一个
+	checkbox	复选框，可以选择多个
+	button 	按钮
+select 标签，下拉框
+	option 每个下拉选项
+
+
+小结：
+1）标准的html，很弱，页面很丑，升级h5，css3功能强大，页面漂亮
+2）border-radius: 500px; 可以设置圆角，设置值大于图片半径就变成圆，图片宽和高相同（正方形）
+3）菜单：
+	html中没有菜单直接实现方式，都是通过
+	ul和多个li组成，通过样式修饰完成
+
+
+background-color 背景色，两种方式
+a. #ee1166 以井号开头，3个16进制数，cgb红绿蓝
+b. 颜色英文单词 black、white、red、yellow、green
+
+4）a链接标签，href 网页链接 http://www.baidu.com/，
+	target目标，_blank（打开新页面），_self（默认，覆盖当前页面）
+
+5）样式可以覆盖的。如果样式冲突，采用就近原则
+6）font-weight 两种：bold加粗，normal标准（默认值）
+7）text-align 文字横向位置：left左、center中、right右
+8）margin
+	a. margin:5px; 上下左右都空5个像素
+	b. margin: 0px auto; 上下都是0，横向居中
+	c. maring-left/-right/-top/-bottom
+	margin: 5px 5px 5px 5px; 上右下左
+
+9）line-height 线高，高度
+10）border: 1px solid #204D74; 测试div透明的，看不见，设置边线，就看的见
+
+10）display: inline-table; 页面布局方式，
+	div（换行）模拟table布局（不换行）
+
+动画3种：
+position: relative; 把页面元素设置为可以移动，相对坐标
+	a. 移动
+	b. 拉伸
+	c. 旋转
+
+animation: mymove 2s infinite;
+
+animation关键字，标识是一个动画
+mymove 动画脚本名称
+2s 动画耗时
+infinite; 反复执行，循环效果，默认动画只执行一遍
+@keyframes mymove{  关键帧
+  from{left: 0px;}
+  to{left: 300px;}
+}
+css3：用户定义一个开始帧，定义一个结束帧，它会自动把中间过程连接起来
+
+
+transition: width 2s;
+transition 拉伸关键字
+width 拉宽，height 拉高
+2s 执行动作的耗时
+
+hover 鼠标移入触发事件
+.transitionbox:hover{
+  width: 300px;
+}
+把长度拉伸到300
+
+
+
+animation: earth-rotation 5s linear 0s infinite;
+animation:  关键字
+earth-rotation 脚本名称
+5s 执行耗时
+linear 线型轨道
+0s 启动时等待时间
+infinite 重复播放
+
+@keyframes earth-rotation{
+  from{ transform: rotate(0deg);}
+  to{ transform: rotate(360deg);}
+}
+
+transform变相，rotate 旋转
+0deg 从0度开始 360deg ，转一圈，
+
+.earth-rotation:hover{
+  animation-play-state: paused;
+}
+
+hover鼠标移入，播放状态，暂停
+
+15）播放声音和视频
+h5新标准
+<audio src=播放mp3，controls=控制台>
+<video src=模仿mp4，controls=控制台>
+
+
+
+

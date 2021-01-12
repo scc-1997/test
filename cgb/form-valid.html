@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>基于Bootstrap的强大jQuery表单验证插件</title>
+
+    <link rel="stylesheet" href="components/bjv/vendor/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="components/bjv/dist/css/formValidation.css"/>
+	<link rel="stylesheet" type="text/css" href="components/bjv/css/default.css">
+</head>
+<body>
+	<div class="htmleaf-container">
+		<div class="container">
+	        <div class="row">
+	            <!-- form: -->
+	            <section>
+	                <div class="page-header">
+	                    <h1>基于Bootstrap的强大jQuery表单验证插件</h1>
+	                </div>
+
+	                <div class="col-lg-8 col-lg-offset-2">
+	                    <form id="defaultForm" method="post" action="userController.do" class="form-horizontal">
+	                        <fieldset>
+	                            <legend>非空校验</legend>
+
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">用户名</label>
+	                                <div class="col-lg-5">
+	                                    <input type="text" class="form-control" name="username" />
+	                                </div>
+	                            </div>
+								
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">年龄</label>
+	                                <div class="col-lg-3">
+	                                    <input type="text" class="form-control" name="ages" />
+	                                </div>
+	                            </div>
+								
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">城市</label>
+	                                <div class="col-lg-5">
+	                                    <select class="form-control" name="country">
+	                                        <option value="">-- Select a country --</option>
+	                                        <option value="fr">France</option>
+	                                        <option value="de">Germany</option>
+	                                        <option value="it">Italy</option>
+	                                        <option value="jp">Japan</option>
+	                                        <option value="ru">Russia</option>
+	                                        <option value="gb">United Kingdom</option>
+	                                        <option value="us">United State</option>
+	                                    </select>
+	                                </div>
+	                            </div>
+
+	                            <div class="form-group">
+	                                <div class="col-lg-5 col-lg-offset-3">
+	                                    <div class="checkbox">
+	                                        <input type="checkbox" name="acceptTerms" /> 接受法律条款，我已认真阅读
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </fieldset>
+
+	                        <fieldset>
+	                            <legend>正则表达式校验</legend>
+
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">邮箱</label>
+	                                <div class="col-lg-5">
+	                                    <input type="text" class="form-control" name="email" />
+	                                </div>
+	                            </div>
+
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">网址</label>
+	                                <div class="col-lg-5">
+	                                    <input type="text" class="form-control" name="website" placeholder="http://" />
+	                                </div>
+	                            </div>
+
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">电话</label>
+	                                <div class="col-lg-5">
+	                                    <input type="text" class="form-control" name="phone" placeholder="xxx-xxxx-xxxx"/>
+	                                </div>
+	                            </div>
+
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">邮政编码</label>
+	                                <div class="col-lg-3">
+	                                    <input type="text" class="form-control" name="zipCode" />
+	                                </div>
+	                            </div>
+	                        </fieldset>
+
+	                        <fieldset>
+	                            <legend>密码校验</legend>
+
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">密码</label>
+	                                <div class="col-lg-5">
+	                                    <input type="password" class="form-control" name="password" />
+	                                </div>
+	                            </div>
+
+	                            <div class="form-group">
+	                                <label class="col-lg-3 control-label">确认密码</label>
+	                                <div class="col-lg-5">
+	                                    <input type="password" class="form-control" name="confirmPassword" />
+	                                </div>
+	                            </div>
+	                        </fieldset>
+
+	                        <div class="form-group">
+	                            <div class="col-lg-9 col-lg-offset-3">
+	                                <button type="submit" class="btn btn-primary">提交表单</button>
+	                            </div>
+	                        </div>
+	                    </form>
+	                </div>
+	            </section>
+	            <!-- :form -->
+	        </div>
+	    </div>
+	</div>
+	
+	<script type="text/javascript" src="components/bjv/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="components/bjv/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="components/bjv/dist/js/formValidation.js"></script>
+    <script type="text/javascript" src="components/bjv/dist/js/framework/bootstrap.js"></script>
+    <script type="text/javascript" sdrc="components/bjv/dist/js/language/zh_CN.js"></script>
+
+    <script type="text/javascript">
+		$(document).ready(function() {
+		    $('#defaultForm').formValidation({
+		        message: 'This value is not valid',
+		        icon: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		            username: {
+		                message: '用户名无效',
+		                validators: {
+		                    notEmpty: {
+		                        message: '用户名必须填写，不能为空!'
+		                    },
+		                    stringLength: {
+		                        min: 6,
+		                        max: 30,
+		                        message: '用户名必须在6到30个字之间！'
+		                    },
+		                    regexp: {
+		                        regexp: /^[a-zA-Z0-9_\.]+$/,
+		                        message: '用户名只能包括字母、数字、点和下划线!'
+		                    }
+		                }
+		            },
+		            ages: {
+		                validators: {
+		                    lessThan: {
+		                        value: 150,
+		                        inclusive: true,
+		                        message: '年龄必须小于150岁!'
+		                    },
+		                    greaterThan: {
+		                        value: 10,
+		                        inclusive: false,
+		                        message: '年龄最小要大于10岁!'
+		                    }
+		                }
+		            },					
+		            country: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '地址必须填写，不能为空!'
+		                    }
+		                }
+		            },
+		            acceptTerms: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '你没有同意法律条款!'
+		                    }
+		                }
+		            },
+		            email: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '邮箱地址必须填写，不能为空!'
+		                    },
+		                    emailAddress: {
+		                        message: '邮箱地址无效!'
+		                    }
+		                }
+		            },
+		            website: {
+		                validators: {
+		                    uri: {
+		                        message: '网址无效，请输入正确格式的网址!'
+		                    }
+		                }
+		            },
+		            phone: {
+		                validators: {
+		                    phone: {
+								country: 'CN',
+		                        message: '电话号码不正确!',
+								validators: {
+								    regexp: {
+								        regexp: /^[0-90]+$/,
+								        message: '电话只能包括数字和-号!'
+								    }
+								}
+		                    }
+		                }
+		            },
+		            zipCode: {
+		                validators: {
+		                    zipCode: {
+		                        country: 'US',
+		                        message: '请输入有效的邮政编码!'
+		                    }
+		                }
+		            },
+		            password: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '密码必须填写，不能为空!'
+		                    }
+		                }
+		            },
+		            confirmPassword: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '确认密码必须填写，不能为空!'
+		                    },
+		                    identical: {
+		                        field: 'password',
+		                        message: '密码和确认密码不同，请重新输入!'
+		                    }
+		                }
+		            }
+		        }
+		    });
+		});
+	</script>
+</body>
+</html>

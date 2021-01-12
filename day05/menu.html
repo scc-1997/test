@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			ul{
+				/* 去掉点 */
+				list-style: none;
+			}
+			li{
+				float:left;	/* 浮动，排在一行上 */
+				/* border: 1px #000000 solid; 边线 solid实线 黑色 */
+				margin: 5px; /* 标签的外层上下左右各空5个像素 */
+				padding: 5px 10px 5px 10px; /* 标签内层 上右下左 */
+				background-color: #ee1166;  /* 背景色 */
+				border-radius: 10px; /* 圆角 */
+			}
+			li:hover{	 /* 鼠标移入触发，移出后会取消 */
+				background-color: #00FFFF; /* 修改背景色 */
+			}
+			a{
+				text-decoration: none; /* a标签下划线去掉 */
+				color: #FFFFFF; /* 字体颜色白色 */
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><a href="https://www.w3school.com.cn/" target="_blank">w3school</a></li>
+			<li><a href="https://www.runoob.com/" target="_blank">菜鸟教程</a></li>
+			<li><a href="https://www.cnblogs.com/" target="_blank">博客园</a></li>
+			<li><a href="https://www.csdn.net/" target="_blank">CSDN</a></li>
+			<li><a href="https://segmentfault.com/" target="_blank">思否</a></li>
+		</ul>
+	</body>
+</html>

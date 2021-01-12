@@ -1,0 +1,117 @@
+知识回顾：
+1）HTML 5.0（h5）比之前版本强大很多，增加很多新的标签
+增强功能动画（flash内存占用泄漏，苹果ipad），
+统一移动端开发（ios、安卓）重复性劳动，软件公司两支团队
+2）CSS 3.0 和H5配合，增强整个网页这种表现能力
+Electron 把网页变成桌面应用程序，word，excel，暴风影音
+目前还不够成熟
+
+3）很多标签，前端知识对于后端的工程师来说10%，写出来，页面展现出来
+大概常用的记忆
+4）样式，看个眼熟，了解意思：font-size，font-weight
+可视化
+5）动画非常丰富，
+
+	position: relative;
+	定位：动画一般情况下相当定位
+
+6）对后端开发者，和前端技术配合
+从后台连接数据库（mysql）查询数据库表中数据 student
+（java jdbc）
+把数据查询出来之后，把它展现在页面上（h5+css3）
+
+表单 form
+html对开发者而言
+1）div,span,ul,li 数据展现（静态网站）
+2）form，input（text/radio/checkbox/button），select
+用户填写自己的信息，可以交互，可以不同用户区分
+（动态网站）提交用户信息到后台 springmvc+spring+mybatis
+
+label 展示名称
+
+
+
+最早只有html
+html+css
+css封装，bootstrap
+
+bootstrap3（暂时不使用4，3现在是市场主流，4和3不兼容的）
+bootstrap3就是一堆样式定义，事先定义很多漂亮的风格
+怎么使用呢？按这些案例分析，改造我们现有页面
+
+1）加一个<form>标签，代表表单
+2）div大多增加一个样式修饰
+<div class="form-group"> 大多文本框div修饰
+
+    <label for="name">名称</label>
+    <input type="text" class="form-control" id="name" placeholder="请输入名称">
+  </div>
+
+3）check的div修饰
+<div class="checkbox">
+
+4）按钮样式也不同
+<button class="btn btn-default"
+
+小结：要使用bootstrap它必须改造页面上元素，增加很多class样式修饰
+
+怎么引入bootstrap，它叫做一个样式表文件
+<link rel="" href=""> 从外部引入一个样式表文件
+样式表文件其实就是把页面上的<style>标签中的内容，单独放入一个文件
+
+<link 
+rel="stylesheet" 
+href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> 
+
+
+样式：
+1）直接在元素上来加style属性
+<h1 style="color:red;">学生信息管理系统</h1>
+2）在页面上<head>标签中声明<style>标签
+<style>
+			body{
+				width: 400px;
+				margin: 30px;
+			}
+		</style>
+3）link标签，多个html共享
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+bootstrap.min.css	只要.min，压缩文件，把所有内容放在一行上
+压缩是格式，空格，换行，缩进tab（下载快）
+bootstrap.css 正常文件（方便开发者看）
+
+
+前端技术三剑客
+1）html 展示页面
+2）css 样式表，页面美化
+	这两个完成静态网站
+3）javascript 和后台交互
+	这三个完成动态网站
+
+javascript？
+针对web页面开发语言，脚本语言
+鄙视链：c鄙视java，java鄙视.net c#，鄙视脚本 javascript
+sql 脚本（弱语言）
+
+浏览器发展，移动端，
+javascript 弱语言 > es6标准（跳出脚本语言，迈向强语言）
+typescript 强语言 Vue主流 Vue3.0使用typescript
+
+javascript 简称：js
+typescript 简称：ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

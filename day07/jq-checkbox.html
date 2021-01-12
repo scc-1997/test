@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>
+			喜欢颜色：
+			<input type="checkbox" id="ckColor"> 红色
+			<input type="checkbox" id="ckColor"> 绿色
+			<input type="checkbox" id="ckColor"> 蓝色
+			<input type="checkbox" id="ckColor"> 黄色
+		</div>
+		<div style="margin:10px;">
+			<button id="selectAll">全选</button>
+			<button id="unSelectAll">取消</button>
+		</div>
+	</body>
+	<script>
+		//属性：attr，prop 1.6扩展，1.9 attr只能生效一次
+		//实现按钮的后期绑定
+		$("#selectAll").click(function(){
+			//获取到页面上所有ckColor（多个元素）
+			$("[id=ckColor]").prop("checked", true);	//打钩
+		})
+		
+		$("#unSelectAll").click(function(){
+			$("[id=ckColor]").prop("checked", false);	//去掉打钩
+		})
+	</script>
+</html>

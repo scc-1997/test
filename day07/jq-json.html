@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body>
+		<h1>解析京东获取商品价格的json字符串</h1>
+		<div>
+			商品的编号：<span id="id"></span>
+		</div>
+		<div>
+			商品的价格：<span id="price"></span>
+		</div>
+	</body>
+	<script>
+		//获取json字符串，再次改造ajax去京东网站获取到这个内容
+		var jsonstr = '[{"p":"5999.00","op":"5999.00","cbf":"0","id":"J_100009077449","m":"6499.00"}]';
+		//先把json字符串转换js对象
+		var jsonobj = JSON.parse( jsonstr );
+		//获取到数组，拿数组的第一条记录
+		var rs = jsonobj[0];
+		var price = rs.p;	//javascript对象语法，rs对象获取p属性值
+		console.log(price);
+		var id = rs.id.substring(2);	//通过js截串函数substring，从第3个字符截取到最后
+		console.log(id);
+		
+		$("#id").text(id);
+		$("#id").css("color", "blue");		//设置样式 color:blue;
+		$("#price").text(price);
+		$("#price").css("color", "red");	//设置样式：color:red;
+	</script>
+</html>

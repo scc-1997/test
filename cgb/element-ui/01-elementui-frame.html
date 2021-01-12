@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<div id="app">
+			<el-row style="margin-top: auto;">
+				<el-col :span="20" :offset="2">
+					<template>
+						<el-table :data="students" style="width: 100%">
+							<el-table-column type="selection" width="55"> </el-table-column>
+							<el-table-column type="index" label="序号" width="60"> </el-table-column>
+							<el-table-column prop="name" label="名字" width="180"> </el-table-column>
+						</el-table>
+					</template>
+				</el-col>
+			</el-row>
+		</div>
+
+		<link rel="stylesheet" type="text/css" href="lib/theme-chalk/index.css" />
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/index.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			var students = [{
+				id:1,
+				name:"段誉",
+				age:19,
+				sex:1,
+				degree:1
+			}]
+
+			var app = new Vue({
+				el: "#app",
+				data: {
+					students: students
+				}
+			})
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

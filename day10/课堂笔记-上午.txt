@@ -1,0 +1,173 @@
+1、Vue框架
+	javascript升级版，js它脚本语言，Vue框架
+	语言它没有生命，api工具类
+	文章中心思想，有生命力
+	Vue框架思想，MVVM框架思想，数据驱动思想，组件化思想
+
+2、j2ee框架，分层思想淋漓尽致体现，MVC（model view controller）
+MVVM（model view viewmodel）
+
+model：代表数据
+view: 代表页面展现
+viewmodel：代表如何在页面中展示数据
+
+数据和页面代码分离
+jsp，页面html代码和数据的代码交织
+大型项目
+<div><%=msg%></div>
+
+分层体系对小系统而言，复杂，但是对大系统而言结构清晰
+各司其职。
+分层体系可以针对每个层进行优化
+
+3、渐进式框架
+一般的框架的特点，全盘接收，要么全部使用，要么你就别用！
+Vue天生可以按需配置，你需要部分功能，我就提供部分功能
+你需要全部功能，那就给你全部功能
+
+a. 核心core 	vue.js
+b. 升级jt，vue体系	vue.js，组件
+		vue.js，组件，router路由
+		vue.js，组件，router路由，状态管理
+		vue.js，组件，router路由，状态管理，构建工具（node,npm,webpack）
+
+4、为什么vue要提供额外命令v-*？
+html，css，（静态网站）
+html表现力太弱，html弱语言，脚本语言
+html它能if语句？for语句
+动态网站，根据当前用户可能展现内容不同？
+实现登录用户名展现：欢迎...
+jsp+jstl（html，java判断最终生成html，动态网站）
+性能慢（服务端），代码交织（java代码、html代码、css代码）
+
+vue在html页面上进行动态判断！if，利用v-if实现
+性能高（浏览器）ajax请求，返回只有数据json，然后vue渲染
+网络资源少，ajax从页面出发，性能高，不占资源
+
+这就是为什么vue框架能流行，这么多好处
+大前端是必由之路！
+
+新技术远超企业多年工作经验人员，企业招聘不是让你精通
+而是对一个初学者要求，主流技术了解，有培养价值！
+
+js升级vue
+css升级bootstrap升级element-ui
+
+学习知识：
+1、组件化，componts 自定义组件
+2、如果引入第三方组件 element-ui
+3、按钮、表格、弹出框
+vue+element-ui如何编程
+
+vue-cli脚手架，生成jt项目（级别）
+要求：固定事情固定地方存储或者编写
+
+启动web服务：nodejs/tomcat
+npm run dev
+
+main.js 全局组件和css样式导入，所有子组件都受用
+App.vue 根组件，所有定义都是子组件，它来调用子组件进行展示
+*.vue 文件内容3部分
+	template  html代码+vue代码（编译）
+	script，js/vue代码，
+		export default唯一导出组件，vue就可以调用这个组件
+		name: 'App' 给组件起一个名称：App
+		import App from './App'
+		import App from './App.vue'
+	style 组件自身的私有样式修饰
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+加上scoped属性，就限制css只对当前组件生效
+
+	操作系统规范：
+	你创建一个目录，已经有两个隐藏目录
+	. 代表当前路径
+	.. 代表上级路径
+
+	style
+
+1、自定义组件 Book.vue
+必须放在src/components目录下
+自己加一个按钮
+
+2、怎么使用自定义组件（注册）
+a. 给组件起一个名字
+<script>
+export default {
+  name: "Book"
+}
+</script>
+
+b. 在App.vue根组件中声明调用这个组件
+在template中引用这个组件<Book></Book>
+
+模板中写法有一个要求：
+- Component template should contain exactly
+应该包含一个确切一个根元素
+ one root element. 
+If you are using v-if on multiple elements, 
+use v-else-if to chain them instead.
+
+导入element-ui
+全局main.js（导包，css）
+
+第一步：资源文件：
+gitee/2011/day08/
+element-ui目录整个下载，放入src目录中
+git全部下载，打开压缩包后，只拷贝element-ui
+
+第二步：安装依赖包
+npm i element-ui -D
+
+在-D开发环境中安装组件 element-ui
+
+第三步：调用elementui，修改main.js
+// 导入element-ui包，npm安装包
+// npm i element-ui -D
+import ElementUI from 'element-ui'
+// 导入element的css支持
+import 'element-ui/lib/theme-chalk/index.css'
+
+//引用这个element-ui
+Vue.use(ElementUI)
+
+
+布局+按钮：
+<el-row> 行
+  <el-button>默认按钮</el-button>
+  <el-button type="primary">主要按钮</el-button>
+  <el-button type="success">成功按钮</el-button>
+  <el-button type="info">信息按钮</el-button>
+  <el-button type="warning">警告按钮</el-button>
+  <el-button type="danger">危险按钮</el-button>
+</el-row>
+
+表格：
+样式
+<el-table
+    :data="tableData"		v-bind
+    stripe
+    style="width: 100%">
+    <el-table-column		表格列：单元格td
+      prop="date"		去获取数据key
+      label="日期"		列名
+      width="180">		列的宽度
+    </el-table-column>
+数据
+
+  export default {
+    data() {
+      return {
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
+
+
+练习：5分钟，
+1）实现表格头
+
+
+

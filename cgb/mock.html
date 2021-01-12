@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/mock.js"></script>
+	</head>
+	<body>
+		<button id="mockjs">mockjs</button>
+	</body>
+	
+<script type="text/javascript">
+ 
+    //调用mock方法模拟数据
+    Mock.mock(
+        'http://mockjs', {
+            "userName" : '@name',     				//模拟名称
+            "age|1-100":100,          					//模拟年龄(1-100)
+            "color"    : "@color",    						//模拟色值
+            "date"     : "@date('yyyy-MM-dd')",  	//模拟时间
+            "url"      : "@url()",     						//模拟url
+            "content"  : "@cparagraph()" 			//模拟文本
+        }
+    );
+    
+    //ajax请求
+    $("#mockjs").click(function(){
+        $.ajax({
+            type       : "GET",   				//请求方式
+            url        : "http://mockjs",     //请求的url地址
+			contentType: "application/json;charset=utf-8",		//请求
+            dataType   : "json",   			//返回格式为json
+            async      : true, 					//请求是否异步，默认为异步，这也是ajax重要特性
+            data       : {},    				//参数值
+            success: function(data) {		//请求成功时处理
+                console.log(data);
+            },
+            error: function() {				//请求出错处理
+                
+            }
+        });
+    });
+</script>	
+</html>

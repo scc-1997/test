@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="http://www.tedu.cn" method="post">
+			<h1>添加/修改信息</h1>
+			<table>
+				<tr>
+					<td>名字</td>
+					<td><input type="text" name="name" value="段誉"/></td>
+				</tr>
+				<tr>
+					<td>年龄</td>
+					<td><input type="text" name="age" value="19"/></td>
+				</tr>
+				<tr>
+					<td>性别</td>
+					<td>
+						<input type="radio" name="sex" value="1"/> 男
+						<input type="radio" name="sex" value="2"/> 女
+					</td>
+				</tr>
+				<tr>
+					<td>学历</td>
+					<td>
+						<select id="degree">
+							<option value="">--请选择--</option>
+							<option value="0">小学</option>
+							<option value="1">中学</option>
+							<option value="2">大学</option>
+							<option value="3">研究生</option>
+							<option value="4">博士</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="button" name="cancel" value="取消"/>
+						<input type="submit" name="ok" value="确定"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+			<h1>{{address}}</h1>
+		<div id="app">
+			<h2>{{address}}</h2>
+			<h3>{{address}}</h3>
+			<h4>{{address}}</h4>
+			<h5>{{address}}</h5>
+			<h6>{{address}}</h6>
+			
+			<input type="text" id="address" v-model="address"/>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				address: "北京天安门"
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+	<title>跳跃的正方形-H5+CSS3动画</title>
+	<style>
+		.loading {
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  width: 160px;
+		  height: 240px;
+
+		  margin: -120px 0 0 -80px;		/* 页面居中 */
+		}
+
+		.loading:after {				/* content只能使用在:after和:before之中。它用于在元素之前或者元素之后加上一些内容 */
+		  content: '';					/* 内容清空，才能展现 */
+		  position: absolute;
+		  left: -5%;
+		  bottom: -5px;
+		  width: 110%;
+		  height: 10px;
+
+		  background: #ececec;
+		  border-radius: 100%;			/* 圆角 */
+		  z-index: -1;					/* Z轴放在最后，防止遮挡先画上的物体 */
+
+		  /*
+			animation	动画
+			shadow		动画名称（自定义）
+			1.8s		执行时间，1.8秒
+			linear		匀速
+			infinite	一直循环播放
+		  */
+		  animation: shadow 1.8s linear infinite;
+		}
+
+		.squareSmall {
+		  position: absolute;
+		  left: 68px;
+		  bottom: 30px;
+		  width: 24px;
+		  height: 24px;
+
+		  background: #42a7fc;
+		  border-radius: 2px;
+
+		  animation: squareSmall 1.8s linear infinite;
+		}
+
+		.squareLarge {
+		  position: absolute;
+		  bottom: -20px;
+		  left: 44px;
+		  width: 72px;
+		  height: 72px;
+
+		  background: #fc3e42;
+		  border-radius: 2px;
+
+		  animation: squareLarge 1.8s linear infinite;
+		}
+
+		@keyframes squareSmall {
+		  0% {
+			transform: scale(1.5, 0.5) rotate(0);
+		  }
+		  10% {
+			transform: scale(1, 1) rotate(0);
+		  }
+		  42% {
+			transform: scale(1, 1) rotate(-180deg);
+			bottom: 250px;
+		  }
+		  74% {
+			transform: scale(1, 1) rotate(-360deg);
+		  }
+		  75% {
+			transform: scale(1, 1) rotate(-360deg);
+			bottom: 74px;
+		  }
+		  95% {
+			transform: scale(1.5, 0.5) rotate(-360deg);
+			bottom: 23px;
+		  }
+		  100% {
+			transform: scale(1.5, 0.5) rotate(-360deg);
+			bottom: 14px;
+		  }
+		}
+		@keyframes squareLarge {
+		  0% {
+			transform: scale(2, 0.5) rotate(0);
+		  }
+		  10% {
+			transform: scale(1, 1) rotate(0);
+		  }
+		  42% {
+			transform: scale(1, 1) rotate(90deg);
+			bottom: 120px;
+		  }
+		  74% {
+			transform: scale(1, 1) rotate(180deg);
+		  }
+		  75% {
+			transform: scale(1, 1) rotate(180deg);
+			bottom: 0;
+		  }
+		  95% {
+			transform: scale(2, 0.5) rotate(180deg);
+			bottom: -20px;
+		  }
+		  100% {
+			transform: scale(2, 0.5) rotate(180deg);
+		  }
+		}
+		@keyframes shadow {
+		  40% {
+			transform: scale(0.5, 0.8);
+		  }
+		}
+
+	</style>
+ </head>
+
+ <body>
+	<div class="loading">
+		<div class="squareSmall"></div>
+		<div class="squareLarge"></div>
+	</div>
+ </body>
+</html>

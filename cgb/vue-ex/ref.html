@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button v-on:click="show">打印日志</button>
+			<input id="username" ref="username" value="王强" />
+			<h1 ref="msg">王强同学学的不错</h1>
+		</div>
+	</body>
+	
+	<script>
+		var vue = new Vue({
+			el: "#app",
+			methods:{
+				show: function(){
+					console.log(document.getElementById('username').value)
+					console.log(this.$refs.username.value)
+					console.log(this.$refs.msg.innerText)
+				}
+			}
+		});
+	</script>
+</html>

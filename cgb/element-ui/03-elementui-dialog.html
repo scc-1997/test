@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<div id="app">
+			<el-row style="margin-top: auto;">
+				<el-col :span="20" :offset="2">
+					 <el-button type="success"  @click="opendialogVisible()" icon="el-icon-star-off" >添加</el-button>
+				</el-col>
+			</el-row>
+						
+			<el-row style="margin-top: auto;">
+				<el-col :span="20" :offset="2">
+					<template>
+						<el-table :data="students" style="width: 100%" :header-cell-style="{'text-align':'center'}">
+							<el-table-column type="selection" width="55"> </el-table-column>
+							<el-table-column type="index" label="序号" width="60"></el-table-column>
+							<el-table-column prop="name" label="名字" width="100" align="center"></el-table-column>
+							<el-table-column label="年龄" width="100" align="right">
+								<template slot-scope="scope">
+									{{scope.row.age}} 年
+								</template>
+							</el-table-column>
+							<el-table-column prop="degree" label="别名" width="180" align="center">
+								<template slot-scope="scope">
+								      <span v-if="scope.row.sex== 0"><el-button  style="color: #DD6161;" type="primary" icon="el-icon-loading" round>小 学</el-button></span>
+								      <span v-else-if="scope.row.degree== 1"><el-button style="color: #B3E19D;" type="warning" icon="el-icon-loading" round>中  学</el-button></span>
+								      <span v-else-if="scope.row.degree== 2"style="color: #E6A23C;"><el-button type="danger" icon="el-icon-loading" round>大  学</el-button></span>
+								      <span v-else-if="scope.row.degree== 3"style="color: #409EFF;"><el-button type="warning" icon="el-icon-loading" round>研究生</el-button></span>
+								      <span v-else="scope.row.degree== 4" style="color: #00FF00;"><el-button type="primary" icon="el-icon-loading" round>博士生</el-button></span>
+								</template>
+							</el-table-column>
+						</el-table>
+					</template>
+				</el-col>
+			</el-row>
+			
+			<!--添加模态框-->
+			<el-dialog
+			  title="添加/修改信息"
+			  :visible.sync="dialogVisible"
+			  width="30%"
+			 >
+			  
+			  <span slot="footer" class="dialog-footer">
+			    <el-button @click="dialogVisible = false">取 消</el-button>
+			    <el-button type="primary" @click="savestudent">确 定</el-button>
+			  </span>
+			</el-dialog>			
+		</div>
+
+		<link rel="stylesheet" type="text/css" href="lib/theme-chalk/index.css" />
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/index.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			var students = [{
+				id:1,
+				name:"段誉",
+				age:19,
+				sex:1,
+				degree:1
+			},{
+				id:2,
+				name:"王语嫣",
+				age:16,
+				sex:2,
+				degree:4
+			},{
+				id:3,
+				name:"慕容复",
+				age:30,
+				sex:1,
+				degree:3
+			},{
+				id:4,
+				name:"鸠摩智",
+				age:40,
+				sex:1,
+				degree:3
+			}]
+			
+			var app = new Vue({
+				el: "#app",
+				data: {
+					students: students,
+					dialogVisible:false
+				},
+				methods:{
+					//显示添加信息
+					opendialogVisible(){
+						this.dialogVisible = true
+					}
+				}
+			})
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

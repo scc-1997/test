@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>VUE 指令</title>
+	<script src="js/vue.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div>
+		v-text					         设置标签中的文本<br/>
+		v-html                           设置标签中的html<br/>
+		
+		v-if                                判断条件<br/>
+		v-show                          判断表达式的值，true则显示，false则隐藏<br/>
+		
+		v-for                              循环<br/>
+		v-on                              注册事件<br/>
+	</div>
+	
+	<div id="app">
+		<hr><div v-text="name"></div>
+		<hr><div v-html="html"></div>
+		
+		<hr><div v-for="h in hobbys">{{ h }}</div>
+		
+		<hr><div v-for="o in object">{{o}}</div>
+		<hr><div v-for="(v,k,i) in object">{{i}},{{k}},{{v}}</div>
+		
+		<hr><div v-if="object.age===20">17</div>
+		<div v-else-if="object.age===18">18</div>
+		<div v-else="object.age===100">{{object.age}}</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var people = {
+		name : "王强",
+		age: 20,
+		sex: "男"
+	}
+
+	// 创建一个 Vue 实例或 "ViewModel"
+	// 它连接 View 与 Model
+	new Vue({
+		el : '#app',
+		data : {
+			name: "应用名",
+			age: 18,
+			html: "<font style='color:red'>HTML文字</fond>",
+			object: people,
+			hobbys: ["男","女","未知", people]
+		},
+		methods:{
+			click: function(){
+				alert(1);
+			},
+			say: function( hobby ){
+				alert(this.name+"的年龄："+this.age+"，爱好是："+hobby);
+			}
+		}
+	});
+</script>
+
+</html>

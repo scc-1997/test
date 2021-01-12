@@ -1,0 +1,174 @@
+1）实现前期绑定和后期绑定事件
+网上常见支付
+	a. 把支付按钮消失
+	b. 把支付按钮禁止，增加提示：您已经支付了，请稍后
+
+2）系统中一堆checkbox，
+全选，全部取消
+
+京东提供多个获取价格手段：玩爬虫
+https://p.3.cn/prices/mgets?skuIds=J_100009077449
+https://item.jd.com/100009077449.html
+
+
+[				数组
+  {				一条记录
+	"p":"5999.00",		键值对：k,v
+	"op":"5999.00",
+	"cbf":"0",
+	"id":"J_100009077449",
+	"m":"6499.00"
+  }
+]
+
+map结构：kv
+"p":"5999.00",		价格
+"id":"J_100009077449",	编号
+
+这个技术称为JSON，主流的开发方式，h5+css3==JSON字符串==java
+读百文
+JSON使用字符串来表现一组数据：
+1）[]数组
+2）{}一条记录
+3）k,v 保存值，通过k获取v
+
+需求：把json中的数据进行解析，把它的价格和编号获取出来
+javascript自身提供，浏览器直接支持，
+JSON.parse(jsonstr)转换成js对象
+
+	<script>
+		//京东商品价格地址：https://p.3.cn/prices/mgets?skuIds=J_100009077449
+		//js可以单引号括起来双引号，或者双引号中单引号括起来
+		var jsonstr = '[{"p":"5999.00","op":"5999.00","cbf":"0","id":"J_100009077449","m":"6499.00"}]';
+		console.log( jsonstr );
+		
+		//js提供JSON工具，对json字符串进行转换，js对象
+		var jsonobj = JSON.parse( jsonstr );
+		console.log( jsonobj );
+		
+		//把js对象转换成json字符串
+		var jsonstr2 = JSON.stringify( jsonobj );
+		console.log(jsonstr2);
+	</script>
+
+
+
+h5+css3  = json = ajax =  京东网站
+使用ajax的技术，可以发起请求request，
+连接到京东后台（java，springmvc），都数据库去处理，到数据库中查询这个商品的价格信息，
+返回响应response，转换json字符串，
+拿到网站返回json就解析json字符串，最终价格展现在网站上。
+
+
+Ajax 即“Asynchronous Javascript And XML”（异步 JavaScript 和 XML）
+
+ajax如何使用？
+javascript使用ajax，api不好用，xhr对象
+jQuery封装了ajax技术，它api很好用
+
+ajax请求响应过程参数非常多
+查询手册，
+
+$.ajax( 一堆参数，常用有8个 )
+1）async 同步，异步标识，默认值：true
+2）type，请求request有两种形式：GET/POST
+3）url，请求连接：https://p.3.cn/prices/mgets
+4）data，参数，?skuIds=J_100009077449
+5）contentType，请求类型：application/json;charset=utf-8
+	不会中文乱码了
+6）dataType，返回类型 jsonp 京东网站要求
+7）success(data){ data.price }，成功请求，返回结果封装data js对象
+8）error(e){ e.status状态号，e.responseText }
+
+必须访问外网网站，访问京东，没有网络这个案例是做不出
+
+
+程序出错，大多两种类型错误
+1）代码写错，把老师代码拷贝过去，
+如果老师的代码执行不正常，说明是环境问题
+如果老师的代码执行正常，代码写错
+一段一段来调试
+
+Access-Control-Allow-Origin 不能使用跨域请求
+localhost，另外一个ip地址（网址）默认是允许
+jsonp支持跨域请求
+
+
+小结：
+1）javascript升级jQuery，js库，称不上框架
+2）改革
+	访问形式，冗长代码，$()=document对象
+	js功能很简单，jQuery牛 .attr()，.css 更简洁操作方式
+jQuery统治业界10年，Vue出现，真正框架
+jQuery开始衰落，不至于彻底消失，市场占有率变小
+了解这个技术，会用即可，
+3）js和jQuery写法差异：选择器
+a. 标签
+document.getElementsByTagName	$("h1")
+b. class修饰
+document.getElementsByClassName	$(".title")
+c. name修饰
+document.getElementsByName	$("[input:name='username']")
+d. id修饰
+document.getElementById		$("#price") 推荐方式
+
+js
+document.getElementById("username").value = "abc";
+动态去设置样式表，代码非常繁琐，还不如自己的sytle <font color='red'>xxx</font>
+jQuery
+$("#username").val("abc");
+$("#username").css("color","red");
+$("#username").css("font-size", 24);
+
+js习惯使用前期绑定方式，jQuery习惯使用后期绑定方式
+前期绑定非常好看，在标签上 onclick="method()"，<script>标签中有方法method()
+后期绑定，标签上没有任何东西，在<script>代码中 
+$("btnOK").click(function(){
+
+})
+
+java，javascript 是在方法体内，this直接使用
+jQuery 它的写法：$(this)
+
+
+json是javascript子集，它非常厉害，它非常简洁表达我们数据
+<resultset><id>123456</id><price>3000</price></resultset>表达方式XML
+{"id": "123456", "price":3000 }	JSON
+JSON就成为数据在网络传输中介质
+
+把后台返回的JSON在页面进行解析：
+JSON对象，浏览器直接集成，自带
+JSON.parse( json字符串 ) 把json格式字符串转成js对象，obj.p 可以直接访问里面元素
+JSON.stringify( js对象）把js对象转换json字符串，传输数据
+
+链接外网，访问京东网站
+ajax提交，json返回
+
+js的ajax写法很繁琐，
+jQuery的ajax写法
+
+var obj = new Object();
+var obj = {}
+
+$.ajax(obj) ajax方法，{}代表js对象
+({
+	async 同步，异步true，默认
+	type GET/POST，习惯POST
+	url 请求网站地址
+	data 链接的参数
+	contentType 固定值：application/json;charset=utf8;
+	dataType 返回值类型：json/jsonp
+	success: function( data ){  data网站返回内容封装到这个对象
+	}
+	error: function( e ){
+		e.status 状态号 404,505
+		e.responseText 错误信息
+	}
+})
+
+
+jQuery、JSON、Ajax 前后台实现贯穿
+
+
+
+

@@ -1,0 +1,120 @@
+mysql 8.0（oracle）把驱动包路径改了，
+8.0 之前。com.mysql.jdbc.Driver
+8.0 之后。com.mysql.cj.jdbc.Driver
+核心代码也改，在数据库后面增加参数
+时区：否则日期计算偏差，8小时
+新驱动会自动提示你需要加这个参数
+
+?serverTimezone=Asia/Shanghai
+
+      String driver = "com.mysql.cj.jdbc.Driver";
+        //访问本机的mysql数据库，端口3307，数据库名
+        String url = "jdbc:mysql://localhost:3307/mysql-db" +
+                "?serverTimezone=Asia/Shanghai";
+
+了解数据库，了解java如何访问数据库，前端技术
+两个时代：
+1）html+css（前端技术）+jsp+servlert/springmvc+spring+mybaits(jdbc)
+2）h5+css3+ vue+nodejs/springmvc+spring+mybatis
+
+html升级h5，css升级css3
+
+2）html做网页+css美化页面
+
+开发网页要有趁手工具：HBuilderX 国内，VsCode 国外
+
+做自己第一个网页 hello.html
+1）打开HBuilderX创建新项目（项目本质就是一个目录）
+2）创建hello.html
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		hello
+	</body>
+</html>
+
+浏览页面两种方式：
+1）直接浏览器打开，推荐使用谷歌浏览器
+file:///C:/2011/hb2011/hello.html
+这种方式直接访问本地文件，html+css+javascript
+
+2）hbuilder直接浏览
+http://127.0.0.1:8848/hb2011/hello.html
+vue+json/java
+
+使用nodejs自己搭建web服务
+
+这种方式会自动刷新
+
+练习：10分钟，15:10继续
+1）用hb工具创建项目（目录）
+2）创建hello.html
+改造第8行，在body中加
+改造<title>内容
+
+
+要实现永和小票打印：
+1）画页面html，所有页面文字先写出来
+2）页面美化css
+
+还有很多标签，布局
+<table>表格
+<div>块
+
+练习：15分钟，15:45继续
+1）创建order.html
+2）把小票字都写成div括起来
+3）bill和self样式
+把小票文字都写完
+（从超级文档中去看）
+6.4.1章节
+
+table 表格
+tr 行
+td 单元格（列）
+
+图片：
+1）<img src="images/qr.png"/>
+2）二维码就是一个网站的链接  http://act.codeboy.com
+
+工具类：google 二维码 api
+封装，直接写一个方法CreateQR.make(url, width, height, path)
+它java类，指定路径，在路径下生成文件  qr.png
+
+静态网站的开发：
+1）html 标记语言 <标记>，在页面上展现不同样子内容（文字、表格、线、图片）
+
+<title>网页浏览器上名字
+<style>里面是样式定义，固定语法
+在html网页中布局两种方式：
+1.1）table布局（方便）
+1.2）div布局（主流）
+<div>会自动换行<span>不会换行，块
+<hr><hr/> 一根线
+
+<table>表格<tr>行<td>单元格
+	border 边线
+	td.width 单元格宽度
+	td.align 单元格位置：横向：left左/center中/right右
+	td.valign 单元格位置：纵向：top顶/center中/middle中/bottom底
+
+在网页html中是不直接认换行（<br><br/>）和空格（&nbsp;）
+中文段落要空两个汉字：7个 &nbsp;
+
+2）css 样式表，美化页面（字体大小，虚线）
+样式引用分为两种：
+1.1）直接写style属性（私有，不公用，其他地方需要，再写一遍）
+	<div style="font-size: 48px; color: red;">顾客联</div>
+	
+1.2）定义全局样式（公用）
+定义一个样式，样式以.开头，引用在标签上 class属性 class="bill"
+.bill{
+	font-size: 28px;
+}
+
+

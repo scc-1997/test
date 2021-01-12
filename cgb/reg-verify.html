@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单校验</title>
+		<link rel="stylesheet" type="text/css" href="css/reg-verify.css"/>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<h2>注册会员</h2>
+			</div>
+			<form id="form" class="form">
+				<div class="form-control">
+					<label for="username">用户名</label>
+					<input type="text" placeholder="请输入用户名" id="username"/>
+					
+					<i class="fas fa-check-circle"></i>
+					<i class="fas fa-execlamation-circle"></i>
+					<small>Error message</small>
+				</div>
+				
+				<div class="form-control">
+					<label for="email">邮箱</label>
+					<input type="email" placeholder="请输入有效邮箱" id="email" />
+					
+					<i class="fas fa-check-circle"></i>
+					<i class="fas fa-execlamation-circle"></i>
+					<small>Error message</small>					
+				</div>
+				
+				<div class="form-control">
+					<label for="password">密码</label>
+					<input type="password" placeholder="请输入密码" id="password"/>
+					
+					<i class="fas fa-check-circle"></i>
+					<i class="fas fa-execlamation-circle"></i>
+					<small>Error message</small>					
+				</div>
+				
+				<div class="form-control">
+					<label for="password2">确认密码</label>
+					<input type="password" placeholder="请输入确认密码" id="password2" />
+					
+					<i class="fas fa-check-circle"></i>
+					<i class="fas fa-execlamation-circle"></i>
+					<small>Error message</small>					
+				</div>
+				
+				<button>提交</button>
+			</form>
+		</div>
+		
+		<!-- 必须放在最后，加载完标签，后期绑定，对其渲染 -->
+		<script src="js/reg-verify.js"></script>
+	</body>
+</html>

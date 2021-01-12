@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>保时捷718 Cayman T，红色，641000元起</h1>
+		<h3>1）Car 对象</h3>
+		<h3>2）属性：name，type，color，price</h3>
+		<script>
+			/* 声明一个js 对象 */
+			var Car = new Object();
+			Car.name = "保时捷718";
+			Car.type = "Cayman T";
+			Car.color = "红色";
+			Car.price = 641000;
+			Car.toStr = function(){
+				return Car.name+","+Car.type+","+Car.color+","+Car.price;
+			};
+			console.log(Car);
+			console.log(Car.price);
+			console.log(Car.toStr());	//调用方法
+			
+			//能修改对象吗？添加一个属性
+			Car.text = "汽车";
+			console.log(Car);
+			
+			Car.whatColor = function(color){
+				return "这个汽车我喜欢："+color+"颜色";
+			}
+			console.log(Car);
+			console.log( Car.whatColor("棕色"));
+		</script>
+	</body>
+</html>

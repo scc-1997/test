@@ -1,0 +1,88 @@
+1、网页三剑客，html/css/javascript
+	引入到更高主流技术，进展比较快；
+	不是为学习这个知识，小于10%，高薪进入企业，新技术
+我们的目标是让大家做项目时，出现这些html标签，css样式，js语法，都不陌生。
+
+2、javascript 从静态网站升级到动态网站技术，网站动态化
+表单，就可以和后台程序交互（java,ssm,nginx,redis,rabbitmq....docker,k8）
+
+js脚本语句，java eclipse/idea调试错误，js出错，调试很弱
+chrome谷歌浏览器兴起，在操作系统之上来浏览器平台
+性能超过市面上所有浏览器IE，形成chrome引擎，nodejs webserver
+js扩展前端也行，后端也行，js开始规范：es6，由弱语言变成强语言 let，const
+箭头函数，typescript真正的强语言。
+
+vue3.0 使用typescript进行了重构
+
+3、javascript
+1）DOM，用的多，document抽象，把整个页面变成document，api升级jQuery，在升级vue框架
+2）BOM 浏览器api，用的少
+
+4、dom.html
+	document.getElementsByTagName("h1")
+	$("h1")
+
+	不同的标签有不同的方法
+	<h1> 文本innerText，HTML innerHTML
+	<a href="">内容</a>   innerText，href
+5、css升级bootstrap，再升级elmentui（饿了吗）替代
+	企业中必然学习新的知识，新知识学习方式
+	开发方式，拿来主义，java，api；html，css，javascript
+	阿里：redis,nginx，docker+k8
+
+1、javascript，登录表单
+javascript输入用户名密码，展示在页面：登录成功
+用bootstrap美化页面
+	a.下载bootstrap.min.css文件
+	b.引用外部样式表文件 <link rel="" href="">
+
+autofocus 自动聚焦，打开页面光标自动停在这个文本框中
+
+按钮标签 onclick事件，点击是才触发
+onclick="doSubmit()"  点击后去执行doSubmit()函数（方法）
+
+获取页面元素两种方式：
+1）document.getElementsByName("username")[0];
+数组
+2）document.getElementById("username")
+id获取一个值
+
+document.getElementById("username").value
+
+
+2、jQuery一统江湖10年，只是js封装，现今开始衰落，已经不作为重点
+Vue替代（封装）Vue底层会使用一些jQuery语法
+
+在js之上做了很多工作，代码更加简洁，新的特性 ajax封装
+ajax它可以访问后台（java）访问京东网站，获取商品信息，价格
+
+3、使用jQuery
+1）下载jQuery.js文件
+javascript已经被集成到各大浏览器中，所以开发者是可以直接使用
+jQuery第三方发明，必须额外引入js文件支持
+2）怎么加入页面中
+	<script src="jquery.min.js>
+3）利用它来实现dom操作，替代javascript基本函数
+	document.getElementById("username")
+	$("#username")
+
+jquery.min.js	压缩，核心代码是一行，换行，空格都去掉
+
+	document		 $()
+	getElementById	#
+
+	document.getElementsByClassName("msg")
+	$(".msg")
+
+	$(选择器).执行的动作
+	var msg = ....
+	msg.innerText	innerHTML
+	$(".msg").text();	.html();
+	value		.val();
+
+jQuery和js相比：
+1）简写，代码量急剧下降
+2）选择器，快速查找页面上的元素，非常丰富
+3）jquery提供一套新的方法或者属性（不好，学习成本，需要单独记忆）	
+
+

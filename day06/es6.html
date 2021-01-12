@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			/* 早期js变量使用var，是没有类型，js类型自动推断
+				java静态编译语言，js是动态编译语言（边运行边解释）
+
+			var a = 10;
+			var b = 20;
+			alert(a+b);
+			
+			var x = 10, y = 20;
+			alert( x*y );
+			
+			var z = 10;
+			for(var i=0; i<3; i++){
+				var z = 100;		//java语法不运行，js支持
+				alert(i+"："+z);		//100
+			}
+			alert(z);			//100
+			 */
+			
+			/* js的var全局，es6才有，let有更小的生命周期（作用域） 
+			let z = 10;
+			for( var i=0; i<3; i++){
+				let z = 100;
+				alert(i+"："+z);		//100
+			}
+			alert(z);			//10
+			*/
+		   
+		   /* es6 有常量 const
+				默认js的错误是不会直接给用户来展现
+				F12 看错误信息
+
+		   const PI = 3.14;
+		   //PI = 3.1415926;
+		   alert(PI);
+			*/		   
+		   
+		   /* es6提供箭头函数 */
+		   /* 传统js方法的定义 */
+			var jsfun = function(x){
+				alert(x*x);
+			}
+			jsfun(10);	/* js方法调用 */
+			
+			/* 如果方法体只有一句代码，它的大括号可以省略 */
+			var es6f0 = () => alert("abc es6"); 
+			es6f0();
+			
+			var es6f1 = (x) => alert(x*x);
+			es6f1(5);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

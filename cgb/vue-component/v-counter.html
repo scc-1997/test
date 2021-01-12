@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<v-count></v-count>
+			<v-count></v-count>
+			<v-count></v-count>
+		</div>
+		
+		<template id="tp">
+			<div>
+				<input type="button" value="计数" @click="incr"/>
+				<h1>{{count}}</h1>
+			</div>
+		</template>
+	</body>
+	<script>
+		Vue.component('v-count', {
+			template: '#tp',
+			data: function(){
+				return { count: 0	}
+			},
+			methods:{
+				incr(){
+					this.count++
+				}
+			}
+		});
+		
+		new Vue({
+			el: "#app"			
+		});
+	</script>
+</html>
